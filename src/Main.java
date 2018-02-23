@@ -6,5 +6,6 @@ public class Main {
         //Mundo mundo = new Mundo();
         System.out.println("0 - Salir");
         System.out.println("1 - Añadir hola.Usuario");
+        System.out.println("1 - Añadir hooola.Usuario");
     }
 }
