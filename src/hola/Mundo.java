@@ -9,13 +9,15 @@ public class Mundo {
     Usuario dos;
     Map<String, Usuario> listaUsuarios = new HashMap<String, Usuario>();
 
-    boolean añadirUsuario(Usuario dos) {
-        listaUsuarios.put("adios",dos);
+   // boolean añadirUsuario(Usuario dos) {
+       // listaUsuarios.put("adios",dos);
         //parametro del main usuario
+
         
-    }
+    //}
     public boolean crearUsuario(String nombre){
-        encontrado=0;
+        int encontrado=0;
+
         for(int i=0; i<listaUsuarios.length;i++){
             if(listaUsuarios.Nombre==nombre){
             encontrado=1;

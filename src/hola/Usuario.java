@@ -18,8 +18,34 @@ public class Usuario {
         this.Defensa = defensa;
         this.Resistencia = resitencia;
     }
-     public String getNombre(){
+    public String getNombre(){
         return Nombre;
      }
+
+    public String geContraseña(){
+        return Password;
+    }
+
+    public int getNivel(){
+        return Nivel;
+    }
+
+    public int getAtaque(){
+        return Ataque;
+    }
+
+    public int getDefensa(){
+        return Defensa;
+    }
+
+    public int getResistencia(){
+        return Resistencia;
+    }
+
+
+
+
+
+
 
 }
