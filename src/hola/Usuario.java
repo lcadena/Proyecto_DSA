@@ -20,6 +20,7 @@ public class Usuario {
         this.nombre = nombre;
         this.password = contraseña;
     }
+<<<<<<< HEAD
 
     public String getNombre(){
         return nombre;
@@ -44,4 +45,36 @@ public class Usuario {
     public int getResistencia() {
         return resistencia;
     }
+=======
+    public String getNombre(){
+        return Nombre;
+     }
+
+    public String geContraseña(){
+        return Password;
+    }
+
+    public int getNivel(){
+        return Nivel;
+    }
+
+    public int getAtaque(){
+        return Ataque;
+    }
+
+    public int getDefensa(){
+        return Defensa;
+    }
+
+    public int getResistencia(){
+        return Resistencia;
+    }
+
+
+
+
+
+
+
+>>>>>>> origin/master
 }
