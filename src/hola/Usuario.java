@@ -1,25 +1,47 @@
 package hola;
 
 public class Usuario {
-    public String Nombre;
-    public String Password;
-    public int Nivel;
-    public int Ataque;
-    public int Defensa;
-    public int Resistencia;
+    private String nombre;
+    private String password;
+    private int nivel;
+    private int ataque;
+    private int defensa;
+    private int resistencia;
 
     public Usuario(String nombre, String contraseña, int nivel, int ataque, int defensa, int resitencia){
-
-        System.out.println("Datos hola.Usuario");
-        this.Nombre = nombre;
-        this.Password = contraseña;
-        this.Nivel = nivel;
-        this.Ataque = ataque;
-        this.Defensa = defensa;
-        this.Resistencia = resitencia;
+        this.nombre = nombre;
+        this.password = contraseña;
+        this.nivel = nivel;
+        this.ataque = ataque;
+        this.defensa = defensa;
+        this.resistencia = resitencia;
     }
-     public String getNombre(){
-        return Nombre;
+    public Usuario(String nombre, String contraseña){
+        this.nombre = nombre;
+        this.password = contraseña;
+    }
+
+    public String getNombre(){
+        return nombre;
      }
 
+     public String getPassword() {
+        return password;
+     }
+
+     public int getNivel() {
+        return nivel;
+     }
+
+     public int getAtaque() {
+        return ataque;
+     }
+
+     public int getDefensa() {
+        return defensa;
+     }
+
+    public int getResistencia() {
+        return resistencia;
+    }
 }
