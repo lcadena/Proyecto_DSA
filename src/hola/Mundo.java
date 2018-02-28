@@ -2,42 +2,52 @@ package hola;
 
 import hola.Usuario;
 import hola.Objeto;
+
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 
 public class Mundo {
 
-<<<<<<< HEAD
     public Mundo() {
 
     }
-    ///creaamos la lista usuarios
-
-
+    ///creamos la lista usuarios
     public  HashMap<String, Usuario> listaUsuarios = new HashMap<String, Usuario>();
 
+    //Funcion Crear Usuario
     public boolean crearUsuario(Usuario u) {
+        if (listaUsuarios.get(u.getNombre()) != null)
+            return false;
+        else{
+            listaUsuarios.put(u.getNombre(), u);
 
-        listaUsuarios.put(u.getNombre(), u);
+            return true;}
+    }
 
+    //Funcion Eliminar Usuario
+    public boolean eliminarUsuario(String nombre) {
+        listaUsuarios.remove(nombre);
         return true;
-=======
-   // boolean añadirUsuario(Usuario dos) {
-       // listaUsuarios.put("adios",dos);
-        //parametro del main usuario
+    }
 
-        
-    //}
-    public boolean crearUsuario(String nombre){
-        int encontrado=0;
+    //Funcion Consultar Usuario
+    public Usuario consultarUsuario(String nombre){
+        return listaUsuarios.get(nombre);// si no encuentra el nombre retorna un null
+    }
 
-        for(int i=0; i<listaUsuarios.length;i++){
-            if(listaUsuarios.Nombre==nombre){
-            encontrado=1;
-                Usuario.Nombre = nombre;
-            }
-        }
-        return false;
->>>>>>> origin/master
+    ///funcion anadir objeto a usuario
+    public void añadirObjeto(Usuario u, Objeto o){
+        u.miInventario.add(o);
+    }
+    //Funcion Consultar lista de objetos
+    public LinkedList consultarObjetos(Usuario u){
+        return u.miInventario;
+    }
+
+    //Funcion Consultar lista de objetos de usuario
+    public LinkedList consultarObjetosdeUsuario(Usuario u, String nombreObjeto){
+        return u.miInventario;
     }
 }

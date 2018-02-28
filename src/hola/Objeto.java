@@ -1,59 +1,65 @@
 package hola;
 
+import hola.Usuario;
+
 public class Objeto{
-    private String Nombre;
 
-    public String getNombre() {
-        return Nombre;
-    }
-
-    public void setNombre(String nombre) {
-        Nombre = nombre;
-    }
-
-    public String getTipo() {
-        return Tipo;
-    }
-
-    public void setTipo(String tipo) {
-        Tipo = tipo;
-    }
-
-    public String getDescripcion() {
-        return Descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        Descripcion = descripcion;
-    }
-
-    public int getValor() {
-        return Valor;
-    }
-
-    public void setValor(int valor) {
-        Valor = valor;
-    }
-
-    public int getCoste() {
-        return Coste;
-    }
-
-    public void setCoste(int coste) {
-        Coste = coste;
-    }
-
-    private String Tipo;
-    private String Descripcion;
-    private int Valor;
-    private int Coste;
-
-    public Objeto(String nombre, String tipo, String descripcion, int valor, int coste){
+    private String nombre;
+    private String tipo;
+    private String descripcion;
+    private int valor;
+    private int coste;
+   /* public Objeto(String nombre, String tipo, String descripcion, int valor, int coste){
         this.Nombre = nombre;
         this.Tipo = tipo;
         this.Descripcion = descripcion;
         this.Valor = valor;
         this.Coste = coste;
+    }*/
+    public Objeto(String nombre, int valor){
+        this.nombre = nombre;
+        this.valor = valor;
+    }
+
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        nombre = nombre;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        tipo = tipo;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        descripcion = descripcion;
+    }
+
+    public int getValor() {
+        return valor;
+    }
+
+    public void setValor(int valor) {
+        valor = valor;
+    }
+
+    public int getCoste() {
+        return coste;
+    }
+
+    public void setCoste(int coste) {
+        coste = coste;
     }
 
 }
