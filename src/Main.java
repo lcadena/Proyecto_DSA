@@ -35,31 +35,42 @@ public class Main {
             switch (op) {
                 case 0://salir del programa
                     ret = 1;
-
+                    System.out.println("Adiós!");
                     break;
 
                 case 1://case para crear usuario
                     nuevoUsuario();
+                    System.out.println("Pulsa enter para volver al menú");
                     lector.readLine();
                     break;
 
                 case 2://case para eliminar usuario
                     deleteUsuario();
+                    System.out.println("Pulsa enter para volver al menú");
                     lector.readLine();
                     break;
 
                 case 3://case para consultar usuario
                     saberUsuario();
+                    System.out.println("Pulsa enter para volver al menú");
                     lector.readLine();
                     break;
 
                 case 4://case para añadir objeto a usuario
                     añadirObjeto();
+                    System.out.println("Pulsa enter para volver al menú");
                     lector.readLine();
                     break;
 
                 case 5://case para añadir objeto a usuario
                     consultarObjetos();
+                    System.out.println("Pulsa enter para volver al menú");
+                    lector.readLine();
+                    break;
+
+                case 6://consultar objetos de usuario
+                    consultarObjetosdeUsuario();
+                    System.out.println("Pulsa enter para volver al menú");
                     lector.readLine();
                     break;
             }
@@ -145,7 +156,7 @@ public class Main {
 
 
             for (Objeto objetos : Inventario) {
-                System.out.println("Nombre objeto:"+ objetos.getNombre() + "valor objeto:" + objetos.getValor() );
+                System.out.println("Nombre objeto: "+ objetos.getNombre() + " valor objeto: " + objetos.getValor() );
             }
     }
 
@@ -169,7 +180,7 @@ public class Main {
 
             Objeto miobjeto = Inventario.get(i);
 
-            if (nombreobjeto == miobjeto.getNombre()&& a ==false ) {
+            if (nombreobjeto == miobjeto.getNombre()&& a == false ) {
                 System.out.println("Nombre objeto: "+ miobjeto.getNombre() + "valor objeto: " + miobjeto.getValor() );
                 a = true;
             }
