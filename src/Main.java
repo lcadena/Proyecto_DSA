@@ -173,7 +173,7 @@ public class Main {
 
         Inventario = mundo.consultarObjetos(usertemp);
         boolean a = false;
-        for (int i =0;i<Inventario.size();i++){
+        /*for (int i =0;i<Inventario.size();i++){
 
 
 
@@ -185,6 +185,17 @@ public class Main {
                 a = true;
             }
         }
+         */
+
+        for (Objeto objetos : Inventario) {
+
+            if ( nombreobjeto.equals(objetos.getNombre() ) && a == false) {
+
+                System.out.println("Nombre objeto: " + objetos.getNombre() + " valor objeto: " + objetos.getValor());
+                a = true;
+            }
+        }
+
 
     }
 }
