@@ -10,13 +10,18 @@ public class Escenario {
     public String nombre;
     public Celda[][] celdas;
 
+
+    public Escenario(){
+
+    }
+
     public Escenario(String nombre, int ancho, int alto) {
         this.nombre = nombre;
         this.ancho = ancho;
         this.alto = alto;
         celdas = new Celda[ancho][alto];
         for(int i=0;i<ancho;i++)
-            for(int j=j<alto;j++) {
+            for(int j=0;j<alto;j++) {
                 celdas[i][j] = new Celda();
             }
     }
@@ -45,8 +50,5 @@ public class Escenario {
         this.nombre = nombre;
     }
 
-    public void pintar(){
-        if (tipo)
-    }
 
 }

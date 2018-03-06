@@ -1,16 +1,16 @@
 package hola;
 
-import com.sun.org.apache.xpath.internal.operations.String;
+
 
 public class Celda {
 
-    public int tipo;
+    public String tipo = "x";
 
-    public int getTipo() {
+    public String getTipo() {
         return tipo;
     }
 
-    public void setTipo(int tipo) {
+    public void setTipo(String tipo) {
         this.tipo = tipo;
     }
 

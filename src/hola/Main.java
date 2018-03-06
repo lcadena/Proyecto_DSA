@@ -13,6 +13,8 @@ public class Main {
 
     public  static void main(String[] args) throws IOException {
 
+
+        Escenario es = new Escenario();
         int op = -1;
         int ret = 0;
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
@@ -28,6 +30,8 @@ public class Main {
         System.out.println("6 - Consultar Objeto");
         System.out.println("7 - Transferir objeto");
         System.out.println("8 - Eliminar Objeto");
+        System.out.println("9 - Crear Escenario ");
+        System.out.println("10 - Mostrar escenario");
         System.out.println("Elija una opción");
         op = Integer.parseInt(lector.readLine());
 
@@ -58,7 +62,7 @@ public class Main {
                     lector.readLine();
                     break;
 
-                case 5://case para añadir objeto a usuario
+                case 5://consultar inventario
                     consultarObjetos();
                     lector.readLine();
                     break;
@@ -75,6 +79,15 @@ public class Main {
                 case 8:
                     eliminarObjeto();
                     break;
+                case 9:
+                    es = crearEscenario();
+                    lector.readLine();
+                    break;
+                case 10:
+                    printearEscenario(es);
+                    lector.readLine();
+                    break;
+
 
             }
         }
@@ -209,13 +222,6 @@ public class Main {
     }
 
 
-
-
-
-
-
-
-
   /////////////// transferirobjetos solo la he empezado no esta bien :(
 
         public static void transferirobjetos() throws IOException {
@@ -259,11 +265,39 @@ public class Main {
 
         }
 
-        public void PrintearEscenario(Escenario e){
+        public static void printearEscenario(Escenario esce){
+
+        int ancho= esce.getAncho();
+        int alto = esce.getAlto();
+        
+            for(int j=0;j<alto;j++) {
+
+                for (int i = 0; i < ancho; i++) {
+                    System.out.print(esce.celdas[i][j].getTipo());
+                }
+                System.out.println("");
+            }
+
 
         }
 
+        public static Escenario crearEscenario()throws IOException {
 
+
+
+            BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
+            System.out.println("Escriba un nombre de escenario");
+            String nombreEscenario = lector.readLine();
+
+            System.out.println("Escriba el ancho del escenario");
+            int ancho = Integer.parseInt(lector.readLine());
+
+            System.out.println("Escriba el alto del escenario");
+            int alto = Integer.parseInt(lector.readLine());
+
+            Escenario esc = new Escenario(nombreEscenario,ancho,alto);
+            return esc;
+        }
 
 
 
