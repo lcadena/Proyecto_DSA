@@ -269,7 +269,7 @@ public class Main {
 
         int ancho= esce.getAncho();
         int alto = esce.getAlto();
-        
+
             for(int j=0;j<alto;j++) {
 
                 for (int i = 0; i < ancho; i++) {
