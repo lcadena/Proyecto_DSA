@@ -259,6 +259,10 @@ public class Main {
 
         }
 
+        public void PrintearEscenario(Escenario e){
+
+        }
+
 
 
 
