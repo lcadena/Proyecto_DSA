@@ -5,10 +5,7 @@ package hola;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.List;
 
 public class Main {
 
@@ -16,10 +13,12 @@ public class Main {
 
     public  static void main(String[] args) throws IOException {
 
+
+        Escenario es = new Escenario();
         int op = -1;
         int ret = 0;
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
-
+        ///////////An: problema con el return en consultar//
 
         while (ret == 0){
         System.out.println("0 - Salir");
@@ -28,6 +27,11 @@ public class Main {
         System.out.println("3 - Consultar Usuario");
         System.out.println("4 - Añadir Objeto a Usuario");
         System.out.println("5 - Consultar Inventario");
+        System.out.println("6 - Consultar Objeto");
+        System.out.println("7 - Transferir objeto");
+        System.out.println("8 - Eliminar Objeto");
+        System.out.println("9 - Crear Escenario ");
+        System.out.println("10 - Mostrar escenario");
         System.out.println("Elija una opción");
         op = Integer.parseInt(lector.readLine());
 
@@ -58,10 +62,33 @@ public class Main {
                     lector.readLine();
                     break;
 
-                case 5://case para añadir objeto a usuario
+                case 5://consultar inventario
                     consultarObjetos();
                     lector.readLine();
                     break;
+                case 6://consultar objetos de usuario
+                    consultarObjetosdeUsuario();
+                    lector.readLine();
+                    break;
+
+                case 7:
+                    transferirobjetos();
+                    lector.readLine();
+                    break;
+
+                case 8:
+                    eliminarObjeto();
+                    break;
+                case 9:
+                    es = crearEscenario();
+                    lector.readLine();
+                    break;
+                case 10:
+                    printearEscenario(es);
+                    lector.readLine();
+                    break;
+
+
             }
         }
     }
@@ -149,7 +176,8 @@ public class Main {
             }
     }
 
-    public static void consultarObjetosdeUsuario() throws IOException{
+    public static int consultarObjetosdeUsuario() throws IOException {
+        int f = 8;
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Escriba un nombre del usuario");
         String nombreusuario = lector.readLine();
@@ -162,18 +190,120 @@ public class Main {
 
         Inventario = mundo.consultarObjetos(usertemp);
         boolean a = false;
-        for (int i =0;i<Inventario.size();i++){
 
 
+        for (Objeto objetos : Inventario) {
 
+            if (nombreobjeto.equals(objetos.getNombre()) && a == false) {
 
-            Objeto miobjeto = Inventario.get(i);
-
-            if (nombreobjeto == miobjeto.getNombre()&& a ==false ) {
-                System.out.println("Nombre objeto: "+ miobjeto.getNombre() + "valor objeto: " + miobjeto.getValor() );
+                System.out.println("Nombre objeto: " + objetos.getNombre() + " valor objeto: " + objetos.getValor());
                 a = true;
+                f = 0;
+
+
             }
+
+            if (a == false) {
+                System.out.println("No esta el objeto");
+                f = -1;
+            }
+
         }
 
+            return f; //nose yo..
+
+
     }
-}
+
+///////////////Eliminar objeto:
+
+    public static void eliminarObjeto() throws IOException {
+
+    }
+
+
+  /////////////// transferirobjetos solo la he empezado no esta bien :(
+
+        public static void transferirobjetos() throws IOException {
+
+            BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
+
+
+
+            int res = consultarObjetosdeUsuario();
+            System.out.println(res);
+            if (res == 0) {
+
+                System.out.println("El usuario  tiene el objeto que deesea transferir :(");
+
+                System.out.println("Escriba el nombre del segundo usuario");
+                String nombreusuario2 = lector.readLine();
+                Usuario usertemp2 = mundo.consultarUsuario(nombreusuario2);
+                //ustertemp1eliminar
+
+
+                System.out.println("Escriba el objeto que quiere transferir");
+                BufferedReader lector1 = new BufferedReader(new InputStreamReader(System.in));
+                String nombreObjeto = lector.readLine();
+                int valorobjeto = 3;
+                Objeto miobjeto = new Objeto(nombreObjeto, valorobjeto);
+                //mundo.añadirObjeto(usertemp2,miobjeto);
+                //LinkedList<Objeto> Inventario = new LinkedList<Objeto>();
+
+                // Inventario = mundo.consultarObjetos(usertemp);
+
+
+
+            }
+            if (res == -1)
+
+            {
+                System.out.println("El usuario no tiene el objeto que deesea transferir :(");
+            }
+
+
+
+        }
+
+        public static void printearEscenario(Escenario esce){
+
+        int ancho= esce.getAncho();
+        int alto = esce.getAlto();
+
+            for(int j=0;j<alto;j++) {
+
+                for (int i = 0; i < ancho; i++) {
+                    System.out.print(esce.celdas[i][j].getTipo());
+                }
+                System.out.println("");
+            }
+
+
+        }
+
+        public static Escenario crearEscenario()throws IOException {
+
+
+
+            BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
+            System.out.println("Escriba un nombre de escenario");
+            String nombreEscenario = lector.readLine();
+
+            System.out.println("Escriba el ancho del escenario");
+            int ancho = Integer.parseInt(lector.readLine());
+
+            System.out.println("Escriba el alto del escenario");
+            int alto = Integer.parseInt(lector.readLine());
+
+            Escenario esc = new Escenario(nombreEscenario,ancho,alto);
+            return esc;
+        }
+
+
+
+
+        }
+
+
+
+
