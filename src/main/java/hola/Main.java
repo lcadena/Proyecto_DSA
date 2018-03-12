@@ -1,11 +1,19 @@
 package hola;
 
 
-
+import java.io.FileWriter;
+import java.io.File;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.LinkedList;
+
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import hola.*;
 
 public class Main {
 
@@ -18,6 +26,7 @@ public class Main {
         int op = -1;
         int ret = 0;
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
+        //LinkedList<Objeto> Inventario = new LinkedList<Objeto>();
         ///////////An: problema con el return en consultar//
 
         while (ret == 0){
@@ -32,6 +41,7 @@ public class Main {
         System.out.println("8 - Eliminar Objeto");
         System.out.println("9 - Crear Escenario ");
         System.out.println("10 - Mostrar escenario");
+        System.out.println("11 - Mostrar escenario en fichero JSON");
         System.out.println("Elija una opción");
         op = Integer.parseInt(lector.readLine());
 
@@ -72,7 +82,7 @@ public class Main {
                     break;
 
                 case 7:
-                    transferirobjetos();
+                    transferirObjetos();
                     lector.readLine();
                     break;
 
@@ -88,12 +98,31 @@ public class Main {
                     printearEscenario(es);
                     lector.readLine();
                     break;
+                case 11:///escenario con JSON
+                    guardarescenarioenficheroJSON(es);
+                    lector.readLine();
+                    break;
+                case 12:///escenario con JSON
+                    es = leerescenariodeficheroJSON();
+                    lector.readLine();
+                    break;
 
 
             }
         }
     }
 
+    public static void guardarescenarioenficheroJSON(Escenario c){
+        JSONEscenario obj = new JSONEscenario();
+        obj.run(c);
+
+    }
+    public static Escenario leerescenariodeficheroJSON(){
+        JSONEscenario obj = new JSONEscenario();
+        Escenario b = new Escenario();
+        b = obj.run2();
+        return b;
+    }
      public static void nuevoUsuario() throws IOException {
 
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
@@ -138,6 +167,44 @@ public class Main {
         System.out.println("La contraseña del usuario" + nombre1 + "es:" + usertemp.getPassword());
     }
 
+    public static void transferirObjetos() throws IOException {
+
+        BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("Escriba el nombre del usuario origen");
+        String nombreusuario1 = lector.readLine();
+        Usuario usertemp1 = mundo.consultarUsuario(nombreusuario1);
+
+        System.out.println("Escriba el nombre del objeto");
+        String nombreobjeto = lector.readLine();
+        LinkedList<Objeto> Inventario = new LinkedList<Objeto>();
+        Inventario = mundo.consultarObjetos(usertemp1);
+        Objeto e = new Objeto(nombreobjeto);
+        //e = Inventario;
+
+        System.out.println("Escriba el nombre del usuario destino");
+        String nombreusuario2 = lector.readLine();
+        Usuario usertemp2 = mundo.consultarUsuario(nombreusuario2);
+        mundo.tranferirObjetosentreUsuarios(usertemp1,usertemp2,e);
+
+
+
+        /**int res = consultarObjetosdeUsuario();
+        System.out.println(res);
+        if (res == 0) {
+
+            int valorobjeto = 3;
+            Objeto miobjeto = new Objeto(nombreObjeto, valorobjeto);
+            //mundo.añadirObjeto(usertemp2,miobjeto);
+            //LinkedList<Objeto> Inventario = new LinkedList<Objeto>();
+
+            // Inventario = mundo.consultarObjetos(usertemp);
+
+        }
+        if (res == -1)
+        {
+            System.out.println("El usuario no tiene el objeto que deesea transferir :(");
+        }**/
+    }
 
     public static void añadirObjeto() throws IOException {
 
@@ -167,8 +234,6 @@ public class Main {
 
         LinkedList<Objeto> Inventario = new LinkedList<Objeto>();
 
-
-
         Inventario = mundo.consultarObjetos(usertemp);
 
 
@@ -186,23 +251,16 @@ public class Main {
 
         System.out.println("Escriba el nombre del objeto");
         String nombreobjeto = lector.readLine();
-
         LinkedList<Objeto> Inventario = new LinkedList<Objeto>();
-
         Inventario = mundo.consultarObjetos(usertemp);
         boolean a = false;
-
-
         for (Objeto objetos : Inventario) {
-
             if (nombreobjeto.equals(objetos.getNombre()) && a == false) {
 
                 System.out.println("Nombre objeto: " + objetos.getNombre() + " valor objeto: " + objetos.getValor());
                 a = true;
                 f = 0;
-
-
-            }
+                            }
 
             if (a == false) {
                 System.out.println("No esta el objeto");
@@ -244,48 +302,6 @@ public class Main {
     }
 
 
-  /////////////// transferirobjetos solo la he empezado no esta bien :(
-
-        public static void transferirobjetos() throws IOException {
-
-            BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
-
-
-
-            int res = consultarObjetosdeUsuario();
-            System.out.println(res);
-            if (res == 0) {
-
-                System.out.println("El usuario  tiene el objeto que deesea transferir :(");
-
-                System.out.println("Escriba el nombre del segundo usuario");
-                String nombreusuario2 = lector.readLine();
-                Usuario usertemp2 = mundo.consultarUsuario(nombreusuario2);
-                //ustertemp1eliminar
-
-
-                System.out.println("Escriba el objeto que quiere transferir");
-                BufferedReader lector1 = new BufferedReader(new InputStreamReader(System.in));
-                String nombreObjeto = lector.readLine();
-                int valorobjeto = 3;
-                Objeto miobjeto = new Objeto(nombreObjeto, valorobjeto);
-                //mundo.añadirObjeto(usertemp2,miobjeto);
-                //LinkedList<Objeto> Inventario = new LinkedList<Objeto>();
-
-                // Inventario = mundo.consultarObjetos(usertemp);
-
-
-
-            }
-            if (res == -1)
-
-            {
-                System.out.println("El usuario no tiene el objeto que deesea transferir :(");
-            }
-
-
-
-        }
 
         public static void printearEscenario(Escenario esce){
 
@@ -302,6 +318,7 @@ public class Main {
 
 
         }
+
 
         public static Escenario crearEscenario()throws IOException {
 
@@ -322,9 +339,7 @@ public class Main {
         }
 
 
-
-
-        }
+}
 
 
 

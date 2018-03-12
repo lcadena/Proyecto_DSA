@@ -58,9 +58,14 @@ public class Mundo {
     public LinkedList consultarObjetos(Usuario u){
         return u.miInventario;
     }
-
     //Funcion Consultar lista de objetos de usuario
     public LinkedList consultarObjetosdeUsuario(Usuario u, String nombreObjeto){
         return u.miInventario;
+    }
+    //Transferiri objetos
+    public void tranferirObjetosentreUsuarios(Usuario u, Usuario e, Objeto o){
+        u.miInventario.remove(o);
+        e.miInventario.add(o);
+
     }
 }
