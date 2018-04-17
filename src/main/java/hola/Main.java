@@ -8,14 +8,19 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.net.URI;
 import java.util.LinkedList;
 
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import hola.*;
+import org.glassfish.grizzly.http.server.HttpServer;
+import org.glassfish.grizzly.http.server.StaticHttpHandler;
+import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
+import org.glassfish.jersey.server.ResourceConfig;
 
-public class Main {
+/*public class Main {
 
     private static Mundo mundo = new Mundo();
 
@@ -41,7 +46,8 @@ public class Main {
         System.out.println("8 - Eliminar Objeto");
         System.out.println("9 - Crear Escenario ");
         System.out.println("10 - Mostrar escenario");
-        System.out.println("11 - Mostrar escenario en fichero JSON");
+        System.out.println("11 - Guardar escenario en fichero JSON");
+        System.out.println("12 - Cargar escenario de fichero JSON");
         System.out.println("Elija una opción");
         op = Integer.parseInt(lector.readLine());
 
@@ -204,7 +210,7 @@ public class Main {
         {
             System.out.println("El usuario no tiene el objeto que deesea transferir :(");
         }**/
-    }
+   /* }
 
     public static void añadirObjeto() throws IOException {
 
@@ -339,6 +345,50 @@ public class Main {
         }
 
 
+}
+
+*/
+/**
+ * Main class.
+ *
+ */
+public class Main {
+    // Base URI the Grizzly HTTP server will listen on
+    public static final String BASE_URI = "http://localhost:8080/myapp/";
+
+    /**
+     * Starts Grizzly HTTP server exposing JAX-RS resources defined in this application.
+     * @return Grizzly HTTP server.
+     */
+    public static HttpServer startServer() {
+        // create a resource config that scans for JAX-RS resources and providers
+        // in edu.upc.dsa package
+        final ResourceConfig rc = new ResourceConfig().packages("hola");
+
+        // create and start a new instance of grizzly http server
+        // exposing the Jersey application at BASE_URI
+        return GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI), rc);
+    }
+
+
+    /**
+     * Main method.
+     * @param args
+     * @throws IOException
+     */
+    public static void main(String[] args) throws IOException {
+        final HttpServer server = startServer();
+
+        StaticHttpHandler staticHttpHandler = new StaticHttpHandler("./public/");
+        server.getServerConfiguration().addHttpHandler(staticHttpHandler, "/");
+
+
+        System.out.println(String.format("Jersey app started with WADL available at "
+                + "%sapplication.wadl\nHit enter to stop it...", BASE_URI));
+
+        System.in.read();
+        server.stop();
+    }
 }
 
 

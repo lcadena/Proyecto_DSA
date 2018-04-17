@@ -22,7 +22,7 @@ public class JSONEscenario {
         //Escenario escenario = createDummyObject();
         try {
             // Convert object to JSON string and save into a file directly
-            mapa.writeValue(new File("C:\\Users\\Lizeth\\IdeaProjects\\EjColecciones1(1)\\Escenario.json"), bosque);
+            mapa.writeValue(new File("C:\\Users\\Arnau\\Desktop\\UNI\\EjColecciones1\\Escenario.json"), bosque);
 
             // Convert object to JSON string
             String jsonInString = mapa.writeValueAsString(bosque);
@@ -62,7 +62,7 @@ public class JSONEscenario {
         ObjectMapper mapper = new ObjectMapper();
         Escenario bosque2 = new  Escenario();
         try {
-            bosque2 = mapper.readValue(new File("C:\\Users\\Lizeth\\IdeaProjects\\EjColecciones1(1)\\Escenario.json"), Escenario.class);
+            bosque2 = mapper.readValue(new File("./Escenario.json"), Escenario.class);
 
         } catch (JsonGenerationException e) {
             e.printStackTrace();

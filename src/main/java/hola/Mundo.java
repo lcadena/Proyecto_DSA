@@ -2,7 +2,7 @@ package hola;
 
 import hola.Usuario;
 import hola.Objeto;
-
+import java.util.*;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -15,8 +15,16 @@ public class Mundo {
     }
     ///creamos la lista usuarios
     public  HashMap<String, Usuario> listaUsuarios = new HashMap<String, Usuario>();
+    public List<Escenario> listaEscenarios = new ArrayList<>();
 
     //Funcion Crear Usuario
+    public void crearEscenario(Escenario a) {
+
+
+            listaEscenarios.add (a);
+
+
+    }
     public boolean crearUsuario(Usuario u) {
         if (listaUsuarios.get(u.getNombre()) != null)
             return false;
@@ -36,6 +44,24 @@ public class Mundo {
     public Usuario consultarUsuario(String nombre){
         return listaUsuarios.get(nombre);// si no encuentra el nombre retorna un null
     }
+
+    public Escenario consultarEscenario(String nombre){
+        int i = 0;
+        boolean a = false;
+        while (a == false){
+            if (nombre.equals(nombre)){
+                a = true;
+            }
+            else
+                i++;
+
+        }
+
+        return listaEscenarios.get(i);// si no encuentra el nombre retorna un null
+    }
+
+
+
 
     public int eliminarObjeto(Usuario e,String nombreobj){
 
