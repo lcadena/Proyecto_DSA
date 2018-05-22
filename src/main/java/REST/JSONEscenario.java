@@ -1,19 +1,12 @@
-package hola;
-
-import java.io.FileWriter;
-import java.io.File;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+package REST;
 
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import Proyecto.Escenario;
+
+import java.io.File;
+import java.io.IOException;
 
 public class JSONEscenario {
 

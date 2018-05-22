@@ -1,10 +1,11 @@
-package hola;
+package REST;
+
+import Proyecto.*;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.LinkedList;
-import java.util.List;
 
 @Path("/json")
 public class JSONService {

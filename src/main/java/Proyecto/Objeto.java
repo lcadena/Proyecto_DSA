@@ -1,6 +1,4 @@
-package hola;
-
-import hola.Usuario;
+package Proyecto;
 
 public class Objeto{
 

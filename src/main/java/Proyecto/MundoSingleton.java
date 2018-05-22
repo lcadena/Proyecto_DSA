@@ -1,7 +1,4 @@
-package hola;
-
-import java.util.ArrayList;
-import java.util.List;
+package Proyecto;
 
 public class MundoSingleton {
     private static MundoSingleton instance;

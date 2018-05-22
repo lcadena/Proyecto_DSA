@@ -1,11 +1,8 @@
-package hola;
+package Proyecto;
 
-import hola.Usuario;
-import hola.Objeto;
 import java.util.*;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 import java.util.HashMap;
 
 public class Mundo {

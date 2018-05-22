@@ -1,7 +1,4 @@
-package hola;
-
-import java.lang.reflect.Array;
-import java.util.ArrayList;
+package Proyecto;
 
 public class Escenario {
 

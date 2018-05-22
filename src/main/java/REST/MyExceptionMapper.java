@@ -1,4 +1,4 @@
-package hola;
+package REST;
 
 import org.glassfish.grizzly.utils.Exceptions;
 
