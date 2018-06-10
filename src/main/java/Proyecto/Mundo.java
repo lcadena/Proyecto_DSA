@@ -1,20 +1,133 @@
 package Proyecto;
 
-import java.util.*;
+import DAOs.ConnBBDD;
+import DAOs.DAO_ObjetoImpl;
+import DAOs.DAO_UsuarioImpl;
+import org.eclipse.persistence.sessions.Login;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.HashMap;
 
 public class Mundo {
 
-    public Mundo() {
-
-    }
     ///creamos la lista usuarios
     public  HashMap<String, Usuario> listaUsuarios = new HashMap<String, Usuario>();
     public List<Escenario> listaEscenarios = new ArrayList<>();
+    //instanciamos los usuarios y objetos del DAO
+    DAO_UsuarioImpl usuario = new DAO_UsuarioImpl();
+    DAO_ObjetoImpl objeto = new DAO_ObjetoImpl();
+    ConnBBDD conn = new ConnBBDD();
+    public Mundo() throws SQLException {
 
-    //Funcion Crear Usuario
+    }
+    //loguear un usuario - devuelve true si esta en BBDD
+    public boolean daoValidarUsuario(String nombre, String contraseña)throws SQLException{
+        conn.conectar();
+        boolean r = usuario.autentificarUsuario(nombre, contraseña);
+        conn.desconectar();
+        return r;
+    }
+    public boolean daoInicioSesionUsuario(Login login)throws SQLException{
+        conn.conectar();
+        boolean r = usuario.autentificarUsuario(login.getUserName(), login.getPassword());
+        conn.desconectar();
+        return r;
+    }
+    //Si no esta en BBDD registra tu usuario
+    public boolean daoRegistroUsuario(Usuario u) throws SQLException{
+        conn.conectar();
+        boolean r = usuario.registroUsuario(u);
+        conn.desconectar();
+        return r;
+    }
+    //Elimina usaurios por el nombre
+    public boolean daoEliminarUsuario(Usuario u) throws SQLException{
+        conn.conectar();
+        boolean r = usuario.eliminarUsuario(u);
+        conn.desconectar();
+        return r;
+    }
+    //Cosulta si el usuario esta en la BBDD
+    public Usuario daoConsultarUsuario(String nombre)throws SQLException{
+        Usuario u;
+        conn.conectar();
+        u = usuario.consultarUsuario(nombre);
+        conn.desconectar();
+        return u;
+    }
+    //Elimina usaurios por el nombre
+    public boolean daoUpdatePasswordUsuario(String nombre, String contraseña) throws SQLException{
+        conn.conectar();
+        boolean r = usuario.updatePassword(nombre,contraseña);
+        conn.desconectar();
+        return r;
+    }
+    //lista de usuarios ordenados por nombre - no acaba de funcionar
+    public void lista () throws SQLException {
+        conn.conectar();
+        usuario.listaUsuarios();
+        conn.desconectar();
+    }
+
+    public boolean daoAñadirObjeto(Objeto o) throws SQLException{
+        conn.conectar();
+        boolean r = objeto.añadirObjeto(o);
+        conn.desconectar();
+        return r;
+    }
+    public void daoAñadirObjetoInventario(Usuario u, Objeto o) throws SQLException{
+        conn.conectar();
+        objeto.insertarObjInventario(u, o);
+        conn.desconectar();
+    }
+    public Objeto daoConsultarObjeto(String nombre)throws SQLException{
+        Objeto o;
+        conn.conectar();
+        o = objeto.consultarObjeto(nombre);
+        conn.desconectar();
+        return o;
+    }
+
+    public boolean daoElegirObjeto(String nombre) throws SQLException{
+        conn.conectar();
+        boolean r = objeto.elegirObjeto(nombre);
+        conn.desconectar();
+        return r;
+    }
+
+    public boolean daoEliminarObjeto(Objeto o) throws SQLException{
+        conn.conectar();
+        boolean r = objeto.eliminarObjeto(o);
+        conn.desconectar();
+        return r;
+    }
+
+    public boolean daoEliminarObjetoInventario(Usuario u, Objeto o) throws SQLException{
+        conn.conectar();
+        boolean r = objeto.eliminarObjetoInventario(u,o);
+        conn.desconectar();
+        return r;
+    }
+
+    public List<Objeto> daoConsultarObjetosUsuario(String nombre) throws SQLException{
+        conn.conectar();
+        Usuario u = daoConsultarUsuario(nombre);
+        List<Objeto> inventariodeUsuario = objeto.listarInventarioUsuario(u);
+        System.out.println("llego");
+        conn.desconectar();
+        return inventariodeUsuario;
+    }
+
+    public boolean daoUpdateValorObjeto(String nombreObjeto, int valor) throws SQLException{
+        conn.conectar();
+        boolean r = objeto.updateValor(nombreObjeto,valor);
+        conn.desconectar();
+        return r;
+    }
+
     public void crearEscenario(Escenario a) {
 
 

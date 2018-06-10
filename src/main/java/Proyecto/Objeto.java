@@ -1,8 +1,18 @@
 package Proyecto;
 
-public class Objeto{
+public class Objeto {
 
-    private String nombre;
+    public int idObjeto;
+
+    public String getNombreObjeto() {
+        return nombreObjeto;
+    }
+
+    public void setNombreObjeto(String nombreObjeto) {
+        this.nombreObjeto = nombreObjeto;
+    }
+
+    private String nombreObjeto;
     private String tipo;
     private String descripcion;
     private int valor;
@@ -19,16 +29,15 @@ public class Objeto{
 
    }
     public Objeto(String nombre, int valor){
-        this.nombre = nombre;
+        this.nombreObjeto = nombre;
         this.valor = valor;
     }
-    public Objeto(String nombre){
-        this.nombre = nombre;
+    public Objeto(int idObjeto,String nombreObjeto, int valor){
+        this.idObjeto = idObjeto;
+        this.nombreObjeto = nombreObjeto;
+        this.valor = valor;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
 
     public void setNombre(String nombre) {
         nombre = nombre;
@@ -65,5 +74,14 @@ public class Objeto{
     public void setCoste(int coste) {
         coste = coste;
     }
+
+    public int getIdObjeto() {
+        return idObjeto;
+    }
+
+    public void setIdObjeto(int idObjeto) {
+        this.idObjeto = idObjeto;
+    }
+
 
 }

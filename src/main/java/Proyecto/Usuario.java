@@ -3,6 +3,8 @@ package Proyecto;
 import java.util.LinkedList;
 
 public class Usuario {
+
+    int idUsuario;
     private String nombre;
     private String password;
     private int nivel;
@@ -10,8 +12,6 @@ public class Usuario {
     private int defensa;
     private int resistencia;
     public LinkedList<Objeto> miInventario = new LinkedList<Objeto>();
-
-
 
     /*public Usuario(String nombre, String contraseña, int nivel, int ataque, int defensa, int resitencia){
             this.nombre = nombre;
@@ -21,7 +21,15 @@ public class Usuario {
             this.defensa = defensa;
             this.resistencia = resitencia;
         }*/
+    public Usuario(){
+
+    }
     public Usuario(String nombre, String contraseña){
+        this.nombre = nombre;
+        this.password = contraseña;
+    }
+    public Usuario(int idUsuario, String nombre, String contraseña){
+        this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.password = contraseña;
     }
@@ -36,7 +44,7 @@ public class Usuario {
          while (i <= miInventario.size() && a == false) {
 
              e = miInventario.get(i);
-             if (nombreob.equals(e.getNombre())) {
+             if (nombreob.equals(e.getNombreObjeto())) {
                  a =true;
              } else i++;
 
@@ -94,5 +102,17 @@ public class Usuario {
 
     public void setMiInventario(LinkedList<Objeto> miInventario) {
         this.miInventario = miInventario;
+    }
+
+    public Integer getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public LinkedList<Objeto> getMiInventario() {
+        return miInventario;
     }
 }

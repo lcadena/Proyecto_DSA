@@ -1,18 +1,23 @@
 package REST;
 
-import Proyecto.*;
+import Proyecto.Mundo;
+import Proyecto.MundoSingleton;
+import Proyecto.Objeto;
+import Proyecto.Usuario;
+import org.eclipse.persistence.sessions.Login;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.LinkedList;
+import java.sql.SQLException;
+
 
 @Path("/json")
 public class JSONService {
 
     protected Mundo mundo;
 
-    public JSONService() {
+    public JSONService() throws SQLException {
         mundo = MundoSingleton.getInstance().getMundo();
 
         if(mundo.listaUsuarios == null) {
@@ -25,22 +30,56 @@ public class JSONService {
         }
     }
 
+    @Path("/basic")
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
+    public String getIt() {
+        return "Got it!";
+    }
+
+
+    @POST
+    @Path("/new")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response newUsuario (Usuario u) throws SQLException {
+        boolean r = mundo.daoRegistroUsuario(u);
+        if(r){
+            return Response.status(201).entity("Registro correcto").build();
+        } else {
+            r = false;
+            return Response.status(209).entity("Usuario existente").build();
+        }
+    }
+
+    @POST
+    @Path("/inicio")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response inicioSesion (Login login) throws SQLException {
+        boolean r = mundo.daoInicioSesionUsuario(login);
+        if(r){
+            return Response.status(201).entity("Registro correcto").build();
+        } else {
+            r = false;
+            return Response.status(209).entity("Error en el registro").build();
+        }
+    }
     @GET
     @Path("/Usuario/{nombre}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Usuario getUsuario(@PathParam("nombre") String nombre) {
-
-        return mundo.consultarUsuario(nombre);
+    public Response getUsuario(@PathParam("nombre") String nombre) throws SQLException {
+        Usuario u = mundo.daoConsultarUsuario(nombre);
+        return Response.status(201).entity(u).build();
     }
+
     @GET
-    @Path("/Objetos/{nombre}")
+    @Path("/Objeto/{nombre}")
     @Produces(MediaType.APPLICATION_JSON)
-    public LinkedList getObjetos(@PathParam("nombre") String nombre) {
-      Usuario us =  mundo.listaUsuarios.get(nombre);
-       return mundo.consultarObjetos(us);
+    public Response getObjeto(@PathParam("nombre") String nombre) throws SQLException{
+      Objeto obj =  mundo.daoConsultarObjeto(nombre);
+       return Response.status(201).entity(obj).build();
     }
 
-    @GET
+    /*@GET
     @Path("/Escenario/{nombre}")
     @Produces(MediaType.APPLICATION_JSON)
     public Escenario getEscenario(@PathParam("nombre") String nombre) {
@@ -58,6 +97,16 @@ public class JSONService {
         // Atencion: siempre añade en la misma posicion por el scope de tracks
         return Response.status(201).entity("User added in position "+mundo.listaUsuarios.size()).build();
     }
+
+    @POST
+    @Path("/new")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response newUsuario(Login login) {
+
+        return Response.status(201).entity("User  added ").build();
+    }
+
+
     @POST
     @Path("/Objeto")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -76,6 +125,6 @@ public class JSONService {
     }
 
 
-
+*/
 
 }
