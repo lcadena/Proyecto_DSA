@@ -54,10 +54,10 @@ public class JSONService {
         System.out.println(login.getNombre() + login.getPassword());
         boolean r = mundo.daoInicioSesionUsuario(login);
         if(r){
-            return Response.status(201).entity("Registro correcto").build();
+            return Response.status(201).entity("Loguin correcto").build();
         } else {
             r = false;
-            return Response.status(209).entity("Error en el registro").build();
+            return Response.status(209).entity("Error al loguearse, registrese").build();
         }
     }
     @POST

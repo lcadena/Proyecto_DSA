@@ -64,12 +64,6 @@ public class Mundo {
         conn.desconectar();
         return r;
     }
-    //lista de usuarios ordenados por nombre - no acaba de funcionar
-    public void lista () throws SQLException {
-        conn.conectar();
-        usuario.listaUsuarios();
-        conn.desconectar();
-    }
 
     public boolean daoAñadirObjeto(Objeto o) throws SQLException{
         conn.conectar();

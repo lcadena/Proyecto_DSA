@@ -20,12 +20,13 @@ public class DAO_ObjetoImpl{
         } else {
             Connection conn;
             PreparedStatement ps = null;
-            String query = "INSERT INTO objetos VALUES (?,?,?)";
+            String query = "INSERT INTO objetos VALUES (?,?,?,?)";
             try {
                 ps = ConnBBDD.conn.prepareStatement(query);
                 ps.setInt(1, o.getIdObjeto());
                 ps.setString(2, o.getNombreObjeto());
-                ps.setInt(3, o.getValor());
+                ps.setString(3, o.getUrlObjeto());
+                ps.setString(4, o.getDescripcion());
                 ps.executeUpdate();
                 System.out.println("Objeto añadido correctamente");
                 // nullpointer
@@ -54,9 +55,10 @@ public class DAO_ObjetoImpl{
         ResultSet rs = stm.executeQuery(query);
         if (rs.next()){
             o.setIdObjeto(rs.getInt("idObjeto"));
-            o.setNombre(rs.getString("nombreObjeto"));
-            o.setValor(rs.getInt("valor"));
-            System.out.println("Objeto " + o.getNombreObjeto() + " con valor " + o.getValor());
+            o.setNombreObjeto(rs.getString("nombreObjeto"));
+            o.setUrlObjeto(rs.getString("urlObjeto"));
+            o.setDescripcion(rs.getString("descripción"));
+            System.out.println("Objeto " + o.getNombreObjeto() + " con descripción " + o.getDescripcion());
         }
         rs.close();
         stm.close();
@@ -122,7 +124,7 @@ public class DAO_ObjetoImpl{
         Statement stm = null;
         Connection conn;
         try {
-            String query = "DELETE FROM objetos WHERE nombreObjeto='" + o.getNombreObjeto() + "' AND valor='" + o.getValor() + "'";
+            String query = "DELETE FROM objetos WHERE nombreObjeto='" + o.getNombreObjeto() + "'";
             stm = ConnBBDD.conn.createStatement();
             stm.execute(query);
             eliminarO = true;
@@ -170,7 +172,7 @@ public class DAO_ObjetoImpl{
 
     //no funciona
     public List<Objeto> listarInventarioUsuario(Usuario u) throws SQLException {
-        String query = "SELECT objeto FROM inventario WHERE NombreUsuario='" + u.getNombre() + "'";
+        String query = "SELECT objeto FROM inventario WHERE usuario='" + u.getNombre() + "'";
         Statement stm = ConnBBDD.conn.createStatement();
         ResultSet rs = stm.executeQuery(query);
         List<Objeto> objetos = new ArrayList<Objeto>();

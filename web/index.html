@@ -193,12 +193,12 @@
                 dataType: 'json',
                 contentType: 'myapp/json',
                 data: JSON.stringify({
-                    nombre: $("#nombre").val(),
+                    username: $("#nombre").val(),
                     password: $("#password").val()
                 }),
                 success: function (data, status) {
                     alert("Data: " + data + "\nStatus: " + status);
-                    //inicioSesion();
+                    iniciosesion();
                 }
             });
         });

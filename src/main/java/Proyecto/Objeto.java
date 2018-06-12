@@ -1,79 +1,26 @@
 package Proyecto;
 
 public class Objeto {
-
-    public int idObjeto;
-
-    public String getNombreObjeto() {
-        return nombreObjeto;
-    }
-
-    public void setNombreObjeto(String nombreObjeto) {
-        this.nombreObjeto = nombreObjeto;
-    }
-
+    private int idObjeto;
+    private String urlObjeto;
     private String nombreObjeto;
-    private String tipo;
     private String descripcion;
-    private int valor;
-    private int coste;
-   /* public Objeto(String nombre, String tipo, String descripcion, int valor, int coste){
-        this.Nombre = nombre;
-        this.Tipo = tipo;
-        this.Descripcion = descripcion;
-        this.Valor = valor;
-        this.Coste = coste;
-    }*/
 
-   public  Objeto(){
 
-   }
+    public  Objeto(){
+
+    }
     public Objeto(String nombre, int valor){
         this.nombreObjeto = nombre;
-        this.valor = valor;
+
     }
-    public Objeto(int idObjeto,String nombreObjeto, int valor){
+    public Objeto(int idObjeto,String nombreObjeto, String urlObjeto, String descripcion){
         this.idObjeto = idObjeto;
         this.nombreObjeto = nombreObjeto;
-        this.valor = valor;
+        this.urlObjeto = urlObjeto;
+        this.descripcion = descripcion;
     }
 
-
-    public void setNombre(String nombre) {
-        nombre = nombre;
-    }
-
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        tipo = tipo;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        descripcion = descripcion;
-    }
-
-    public int getValor() {
-        return valor;
-    }
-
-    public void setValor(int valor) {
-        valor = valor;
-    }
-
-    public int getCoste() {
-        return coste;
-    }
-
-    public void setCoste(int coste) {
-        coste = coste;
-    }
 
     public int getIdObjeto() {
         return idObjeto;
@@ -83,5 +30,28 @@ public class Objeto {
         this.idObjeto = idObjeto;
     }
 
+    public String getUrlObjeto() {
+        return urlObjeto;
+    }
+
+    public void setUrlObjeto(String urlObjeto) {
+        this.urlObjeto = urlObjeto;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public String getNombreObjeto() {
+        return nombreObjeto;
+    }
+
+    public void setNombreObjeto(String nombreObjeto) {
+        this.nombreObjeto = nombreObjeto;
+    }
 
 }

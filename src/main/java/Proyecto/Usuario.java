@@ -24,11 +24,11 @@ public class Usuario {
     public Usuario(){
 
     }
-    public Usuario(String nombre, String contraseña){
-        this.nombre = nombre;
+    public Usuario(String nombreUsuario, String contraseña){
+        this.nombre = nombreUsuario;
         this.password = contraseña;
     }
-    public Usuario(int idUsuario, String nombre, String contraseña){
+    public Usuario(int idUsuario, String nombreUsuario, String contraseña){
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.password = contraseña;

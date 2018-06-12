@@ -14,17 +14,17 @@ public class MainDAOs {
         DAO_ObjetoImpl objeto = new DAO_ObjetoImpl();
         Mundo m = new Mundo();
         Usuario u = new Usuario("Laura", "sss");
-        Objeto obj = new Objeto("Espada",800);
+        Objeto obj = new Objeto(1,"Espada","jjjj","hola");
         //usuario.registroUsuario(u);
 
         try {
             //m.lista();
-            m.daoRegistroUsuario(u);
+            //m.daoRegistroUsuario(u);
             //m.daoEliminarUsuario(u);
             //m.daoConsultarUsuario("Liz");
             //m.daoValidarUsuario("Liz", "123");
             //m.daoUpdatePasswordUsuario("Liz", "222");
-            //m.daoAñadirObjeto(obj);
+            m.daoAñadirObjeto(obj);
             //m.daoElegirObjeto("Catana");
             //m.daoEliminarObjeto(obj);
             //m.daoUpdateValorObjeto("Espada", 400);
