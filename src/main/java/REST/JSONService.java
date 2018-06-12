@@ -4,7 +4,6 @@ import Proyecto.Mundo;
 import Proyecto.MundoSingleton;
 import Proyecto.Objeto;
 import Proyecto.Usuario;
-import org.eclipse.persistence.sessions.Login;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -54,7 +53,8 @@ public class JSONService {
     @POST
     @Path("/inicio")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response inicioSesion (Login login) throws SQLException {
+    public Response inicioSesion (Proyecto.Login login) throws SQLException {
+        System.out.println(login.getNombre() + login.getPassword());
         boolean r = mundo.daoInicioSesionUsuario(login);
         if(r){
             return Response.status(201).entity("Registro correcto").build();

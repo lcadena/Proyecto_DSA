@@ -3,7 +3,6 @@ package Proyecto;
 import DAOs.ConnBBDD;
 import DAOs.DAO_ObjetoImpl;
 import DAOs.DAO_UsuarioImpl;
-import org.eclipse.persistence.sessions.Login;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -30,9 +29,9 @@ public class Mundo {
         conn.desconectar();
         return r;
     }
-    public boolean daoInicioSesionUsuario(Login login)throws SQLException{
+    public boolean daoInicioSesionUsuario(Proyecto.Login login)throws SQLException{
         conn.conectar();
-        boolean r = usuario.autentificarUsuario(login.getUserName(), login.getPassword());
+        boolean r = usuario.autentificarUsuario(login.getNombre(), login.getPassword());
         conn.desconectar();
         return r;
     }

@@ -188,17 +188,17 @@
         var url = 'http://192.168.56.1:8080/myapp/json';
         $("#buttonLogin").click(function () {
             $.ajax({
-                url: url + '/Usuario/{nombre}',
-                type: 'GET',
+                url: url + '/inicio',
+                type: 'POST',
                 dataType: 'json',
                 contentType: 'myapp/json',
                 data: JSON.stringify({
-                    username: $("#username").val(),
+                    nombre: $("#nombre").val(),
                     password: $("#password").val()
                 }),
                 success: function (data, status) {
                     alert("Data: " + data + "\nStatus: " + status);
-                    getUsuario();
+                    //inicioSesion();
                 }
             });
         });
