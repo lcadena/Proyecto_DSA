@@ -1,13 +1,21 @@
 package Proyecto;
 
 public class Login {
-    String nombre;
-    String password;
+
+
+    private String nombre;
+    private  String password;
+
+    public Login(){
+
+    }
 
     public Login(String nombre, String password){
-        this.nombre = nombre;
-        this.password = password;
+        nombre=this.nombre;
+        password=this.password;
+
     }
+
 
     public String getNombre() {
         return nombre;
@@ -16,6 +24,7 @@ public class Login {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
 
     public String getPassword() {
         return password;
