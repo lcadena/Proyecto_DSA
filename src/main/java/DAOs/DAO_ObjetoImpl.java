@@ -20,13 +20,14 @@ public class DAO_ObjetoImpl{
         } else {
             Connection conn;
             PreparedStatement ps = null;
-            String query = "INSERT INTO objetos VALUES (?,?,?,?)";
+            String query = "INSERT INTO objetos VALUES (?,?,?,?,?)";
             try {
                 ps = ConnBBDD.conn.prepareStatement(query);
                 ps.setInt(1, o.getIdObjeto());
-                ps.setString(2, o.getNombreObjeto());
-                ps.setString(3, o.getUrlObjeto());
-                ps.setString(4, o.getDescripcion());
+                ps.setInt(2, o.getIdUsuario());
+                ps.setString(3, o.getNombreObjeto());
+                ps.setString(4, o.getUrlObjeto());
+                ps.setString(5, o.getDescripcion());
                 ps.executeUpdate();
                 System.out.println("Objeto añadido correctamente");
                 // nullpointer
@@ -47,14 +48,35 @@ public class DAO_ObjetoImpl{
         return añadirO;
     }
 
+    public boolean insertarObjInventario (Usuario u, Objeto o) throws SQLException {
+        boolean insert = true;
+        String query = "INSERT INTO inventario VALUES (?,?)";
+        try {
+            PreparedStatement ps = ConnBBDD.conn.prepareStatement(query);
+            //ps.setInt(1, u.getIdUsuario());
+            ps.setInt(1, o.getIdObjeto());
+            ps.setString(2, u.getNombre());
+
+            ps.executeUpdate();
+            System.out.println("Se ha añadido al inventario del usuario " + u.getNombre() + " el objeto " + o.getNombreObjeto());
+            // nullpointer
+            ps.close();
+        } catch (SQLException e){
+            System.out.println("Error en el registro");
+            e.printStackTrace();
+        }
+        return insert;
+    }
+
     /////metodo SELECT
-    public Objeto consultarObjeto(String nombreObjeto) throws SQLException{
+    public Objeto consultarObjeto(int id) throws SQLException{
         Objeto o = new Objeto();
-        String query = "SELECT * FROM objetos WHERE nombreObjeto='" + nombreObjeto + "'";
+        String query = "SELECT * FROM objetos WHERE idObjeto='" + id + "'";
         Statement stm = ConnBBDD.conn.createStatement();
         ResultSet rs = stm.executeQuery(query);
         if (rs.next()){
             o.setIdObjeto(rs.getInt("idObjeto"));
+            o.setIdUsuario(rs.getInt("idUsuario"));
             o.setNombreObjeto(rs.getString("nombreObjeto"));
             o.setUrlObjeto(rs.getString("urlObjeto"));
             o.setDescripcion(rs.getString("descripción"));
@@ -63,6 +85,24 @@ public class DAO_ObjetoImpl{
         rs.close();
         stm.close();
         return o;
+
+    }
+    public Objeto consultarObjetoNom(String nombreOb) throws SQLException{
+        Objeto objeto = new Objeto();
+        String query = "SELECT * FROM objetos WHERE nombreObjeto='" + nombreOb + "'";
+        Statement stm = ConnBBDD.conn.createStatement();
+        ResultSet rs = stm.executeQuery(query);
+        if (rs.next()){
+            objeto.setIdObjeto(rs.getInt("idObjeto"));
+            objeto.setIdUsuario(rs.getInt("idUsuario"));
+            objeto.setNombreObjeto(rs.getString("nombreObjeto"));
+            objeto.setUrlObjeto(rs.getString("urlObjeto"));
+            objeto.setDescripcion(rs.getString("descripción"));
+            System.out.println("Objeto " + objeto.getNombreObjeto() + " con descripción " + objeto.getDescripcion());
+        }
+        rs.close();
+        stm.close();
+        return objeto;
 
     }
 
@@ -79,7 +119,7 @@ public class DAO_ObjetoImpl{
         stm.close();
         return consulta;
     }
-    ////Metodo SELECT
+
     public boolean elegirObjeto(String nombre){
         boolean elegir = false;
         ResultSet rs = null;
@@ -101,22 +141,49 @@ public class DAO_ObjetoImpl{
         return elegir;
     }
 
-    public void insertarObjInventario (Usuario u, Objeto o) throws SQLException {
-        String query = "INSERT INTO inventario VALUES (?,?)";
+    public Objeto dameObjetosUsuariodeInventario(Usuario u, int idOb) throws SQLException {
+        Statement stm = null;
+        ResultSet rs = null;
+        String query = "SELECT idObjeto FROM inventario WHERE nombreUsuario='" + u.getNombre() + "'";
+        Objeto o = null;
         try {
-            PreparedStatement ps = ConnBBDD.conn.prepareStatement(query);
-            ps.setString(1, u.getNombre());
-            ps.setString(2, o.getNombreObjeto());
-            ps.executeUpdate();
-            ps.close();
-            System.out.println("Se ha añadido al usuario " + u.getNombre() + " el objeto " + o.getNombreObjeto());
-            // nullpointer
-        } catch (SQLException e){
-            System.out.println("Error en el registro");
+            rs = stm.executeQuery(query);
+            o = null;
+            while(rs.next()){
+                o = consultarObjeto(rs.getInt("idObjeto"));
+            }
+            if (idOb != o.getIdObjeto()){
+                o = null;
+            }
+            rs.close();
+            stm.close();
+        } catch (SQLException e) {
+            System.out.println("Error funcion dameObjetosUsuario");
             e.printStackTrace();
         }
+        return o;
 
     }
+
+    //no funciona
+    public List<Objeto> listarInventarioUsuario(Usuario u) throws SQLException {
+        Statement stm = ConnBBDD.conn.createStatement();
+        String query = "SELECT idObjeto FROM inventario WHERE nombreUsuario='" + u.getNombre() + "'";
+        List<Objeto> objetos = new ArrayList<Objeto>();
+        ResultSet rs = stm.executeQuery(query);
+        try {
+            if (rs.next()) {
+                objetos.add(consultarObjeto(rs.getInt("idObjeto")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            stm.close();
+            rs.close();
+            return objetos;
+        }
+    }
+
 
     //metodo DELETE
     public boolean eliminarObjeto(Objeto o){
@@ -168,27 +235,6 @@ public class DAO_ObjetoImpl{
             e.printStackTrace();
         }
         return updateV;
-    }
-
-    //no funciona
-    public List<Objeto> listarInventarioUsuario(Usuario u) throws SQLException {
-        String query = "SELECT objeto FROM inventario WHERE usuario='" + u.getNombre() + "'";
-        Statement stm = ConnBBDD.conn.createStatement();
-        ResultSet rs = stm.executeQuery(query);
-        List<Objeto> objetos = new ArrayList<Objeto>();
-        try {
-
-            if (rs.next()) {
-                System.out.println(objetos);
-                objetos.add(consultarObjeto(rs.getString("objeto")));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            stm.close();
-            rs.close();
-            return objetos;
-        }
     }
 
 }

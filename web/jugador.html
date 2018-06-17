@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Jugador</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="/web/CSS/Styles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&callback=myMap"></script>
+    <style>
+        body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
+        body, html {
+            height: 100%;
+            color: #777;
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body>
+
+<div class="w3-content w3-container w3-padding-64" id="game">
+    <h3 class="w3-center">Información del Jugador</h3>
+    <p class="w3-center"><em>Aqui puede encontrar la información de los jugadores y modificar alguno de los valores<br> Elige una opción </em></p><br>
+
+    <!-- Responsive Grid. Four columns on tablets, laptops and desktops. Will stack on mobile devices/small screens (100% width) -->
+    <div class="w3-row-padding w3-center">
+<!--        <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+            <div class="w3-half">
+                <input id="nombre" class="w3-input w3-border" type="text" placeholder="Usuario" required name="Usuario">
+            </div>
+            <div class="w3-half">
+                <input id="password" class="w3-input w3-border" type="text" placeholder="Contraseña" required name="Contraseña">
+            </div>
+        </div>
+        <button class="w3-button w3-light-grey w3-center w3-section" id="buttonLogin" type="submit">
+            <i class="fa fa-user"></i> Login
+        </button>
+        <button class="w3-button w3-light-grey w3-center w3-section" id="buttonRegister" type="submit">
+            <i class="fa fa-user-plus"></i> Registro
+        </button>-->
+
+        <p><input id="username" class="w3-input w3-padding-16 w3-half" type="text" placeholder="Usuario" required name="Usuario"></p>
+        <!--<p><input class="w3-input w3-padding-16 w3" type="text" placeholder="Name" required name="Name"></p>-->
+        <p>
+           <button class="w3-button w3-light-grey w3-padding-large" id="buttonHistorialOb" type="submit">
+                <i class="fa fa-database"></i> Objetos
+           </button>
+        </p>
+
+        <script>
+            $(document).ready(function () {
+                var url = 'http://192.168.56.1:8080/myapp/json';
+                $("#buttonHistorialOb").click(function () {
+                    $.ajax({
+                        url: url + '/inicio',
+                        type: 'get',
+                        dataType: 'json',
+                        contentType: 'application/json',
+                        data: JSON.stringify({
+                            username: $("#username").val(),
+                            /*password: $("#password").val()*/
+                        }),
+                        success: function (data, status) {
+                            alert("Data: " + data + "\n Status: " + status);
+                            console.log(data)
+                        }
+                    });
+                });
+            });
+        </script>
+    </div>
+</div>
+</body>
+</html>

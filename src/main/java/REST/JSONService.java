@@ -34,18 +34,18 @@ public class JSONService {
     }
 
 
-//    @POST
-//    @Path("/new")
-//    @Consumes(MediaType.APPLICATION_JSON)
-//    public Response newUsuario (Usuario u) throws SQLException {
-//        boolean r = mundo.daoRegistroUsuario(u);
-//        if(r){
-//            return Response.status(201).entity("Registro correcto").build();
-//        } else {
-//            r = false;
-//            return Response.status(209).entity("Usuario existente").build();
-//        }
-//    }
+    @POST
+    @Path("/new")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response newUsuario (Usuario u) throws SQLException {
+        boolean r = mundo.daoRegistroUsuario(u);
+        if(r){
+            return Response.status(201).entity("Registro correcto").build();
+        } else {
+            r = false;
+            return Response.status(209).entity("Usuario existente").build();
+        }
+    }
 
     @POST
     @Path("/inicio")
@@ -60,13 +60,13 @@ public class JSONService {
             return Response.status(209).entity("Error al loguearse, registrese").build();
         }
     }
-    @POST
+/*    @POST
     @Path("/new")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response newUsuario(Login login) {
 
         return Response.status(201).entity("User  added ").build();
-    }
+    }*/
 
     @GET
     @Path("/Usuario/{nombre}")
@@ -80,7 +80,7 @@ public class JSONService {
     @Path("/Objeto/{nombre}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getObjeto(@PathParam("nombre") String nombre) throws SQLException{
-      Objeto obj =  mundo.daoConsultarObjeto(nombre);
+      Objeto obj =  mundo.daoConsultarObjetoNom(nombre);
        return Response.status(201).entity(obj).build();
     }
 

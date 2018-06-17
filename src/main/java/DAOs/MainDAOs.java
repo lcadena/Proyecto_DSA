@@ -14,22 +14,27 @@ public class MainDAOs {
         DAO_ObjetoImpl objeto = new DAO_ObjetoImpl();
         Mundo m = new Mundo();
         Usuario u = new Usuario("Laura", "sss");
-        Objeto obj = new Objeto(1,"Espada","jjjj","hola");
+        Objeto obj = new Objeto(3, 2,"Cuerda","/web/images","de acero resistente");
         //usuario.registroUsuario(u);
 
         try {
+            //objeto.insertarObjInventario(u, obj);
             //m.lista();
             //m.daoRegistroUsuario(u);
             //m.daoEliminarUsuario(u);
             //m.daoConsultarUsuario("Liz");
             //m.daoValidarUsuario("Liz", "123");
             //m.daoUpdatePasswordUsuario("Liz", "222");
-            m.daoAñadirObjeto(obj);
+            //m.daoAñadirObjeto(obj);
             //m.daoElegirObjeto("Catana");
             //m.daoEliminarObjeto(obj);
             //m.daoUpdateValorObjeto("Espada", 400);
             //m.daoEliminarObjetoInventario(u, obj);
+            //m.listaObjetosdeUsuario("Liz");
             //m.daoConsultarObjetosUsuario(u.getNombre());
+            //m.daoConsultarObjetosUsuario("Pablo");
+            //m.daoAñadirObjetoaUsuario(2, "Laura");
+            m.daoConsultarObjetosUsuario(u, obj.getIdObjeto());
         } catch (SQLException e){
             e.printStackTrace();
         }

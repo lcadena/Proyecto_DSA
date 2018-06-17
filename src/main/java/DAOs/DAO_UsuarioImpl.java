@@ -94,6 +94,7 @@ public class DAO_UsuarioImpl{
         Statement stm = ConnBBDD.conn.createStatement();
         ResultSet rs = stm.executeQuery(query);
         if (rs.next()){
+            //u.setIdUsuario(rs.getInt("idUsuario"));
             u.setNombre(rs.getString("nombreUsuario"));
             u.setPassword(rs.getString("contraseña"));
             System.out.println("Usuario: " + u.getNombre() + " con contraseña: " + u.getPassword() );

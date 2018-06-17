@@ -5,6 +5,7 @@ public class Objeto {
     private String urlObjeto;
     private String nombreObjeto;
     private String descripcion;
+    private int idUsuario;
 
 
     public  Objeto(){
@@ -14,8 +15,9 @@ public class Objeto {
         this.nombreObjeto = nombre;
 
     }
-    public Objeto(int idObjeto,String nombreObjeto, String urlObjeto, String descripcion){
+    public Objeto(int idObjeto, int idUsuario, String nombreObjeto, String urlObjeto, String descripcion){
         this.idObjeto = idObjeto;
+        this.idUsuario = idUsuario;
         this.nombreObjeto = nombreObjeto;
         this.urlObjeto = urlObjeto;
         this.descripcion = descripcion;
@@ -53,5 +55,14 @@ public class Objeto {
     public void setNombreObjeto(String nombreObjeto) {
         this.nombreObjeto = nombreObjeto;
     }
+
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
 
 }

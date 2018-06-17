@@ -71,19 +71,59 @@ public class Mundo {
         conn.desconectar();
         return r;
     }
-    public void daoAñadirObjetoInventario(Usuario u, Objeto o) throws SQLException{
+
+    public List<Objeto> listaObjetosdeUsuario(String nombre) throws SQLException{
+        Usuario u = daoConsultarUsuario(nombre);
         conn.conectar();
-        objeto.insertarObjInventario(u, o);
+        List<Objeto> objetos = objeto.listarInventarioUsuario(u);
         conn.desconectar();
+        return objetos;
     }
-    public Objeto daoConsultarObjeto(String nombre)throws SQLException{
+
+    public boolean daoAñadirObjetoaUsuario(int id, String nombre) throws SQLException{
+        boolean resultado = true;
+        conn.conectar();
+        Usuario u = usuario.consultarUsuario(nombre);
+        Objeto o = objeto.consultarObjeto(id);
+        conn.desconectar();
+        List<Objeto> misObjetos = listaObjetosdeUsuario(nombre);
+        for (Objeto ob2 : misObjetos) {
+            if (ob2.getIdObjeto() == id){
+                resultado = false;
+            }
+        }
+        if (resultado){
+            conn.conectar();
+            System.out.println("llegoinsert");
+            resultado = objeto.insertarObjInventario(u, o);
+            System.out.println("llegodespuesinsert");
+            conn.desconectar();
+        }
+        return resultado;
+    }
+
+    public Objeto daoConsultarObjeto(int id)throws SQLException{
         Objeto o;
         conn.conectar();
-        o = objeto.consultarObjeto(nombre);
+        o = objeto.consultarObjeto(id);
         conn.desconectar();
         return o;
     }
 
+    public Objeto daoConsultarObjetosUsuario(Usuario u, int idObj) throws SQLException{
+        conn.conectar();
+        Objeto obj = objeto.dameObjetosUsuariodeInventario(u, idObj);
+        conn.desconectar();
+        return obj;
+    }
+
+    public Objeto daoConsultarObjetoNom(String nombre)throws SQLException{
+        Objeto o;
+        conn.conectar();
+        o = objeto.consultarObjetoNom(nombre);
+        conn.desconectar();
+        return o;
+    }
     public boolean daoElegirObjeto(String nombre) throws SQLException{
         conn.conectar();
         boolean r = objeto.elegirObjeto(nombre);
@@ -98,18 +138,11 @@ public class Mundo {
         return r;
     }
 
-    public boolean daoEliminarObjetoInventario(Usuario u, Objeto o) throws SQLException{
-        conn.conectar();
-        boolean r = objeto.eliminarObjetoInventario(u,o);
-        conn.desconectar();
-        return r;
-    }
-
     public List<Objeto> daoConsultarObjetosUsuario(String nombre) throws SQLException{
-        conn.conectar();
         Usuario u = daoConsultarUsuario(nombre);
+        conn.conectar();
         List<Objeto> inventariodeUsuario = objeto.listarInventarioUsuario(u);
-        System.out.println("llego");
+        System.out.println("llego1");
         conn.desconectar();
         return inventariodeUsuario;
     }
