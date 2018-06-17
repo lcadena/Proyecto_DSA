@@ -8,9 +8,9 @@ public class ConnBBDD {
     public static Connection conn;
     public static Connection conectar(){
         String user = "root";
-        String password = "";
+        String password = "Mazinger72";
         String BBDD = "juego";
-        String url = "jdbc:mysql://127.0.0.1:3306/" + BBDD;
+        String url = "jdbc:mysql://147.83.7.204:3306/" + BBDD;
         try{
 
             Class.forName("com.mysql.jdbc.Driver").newInstance();

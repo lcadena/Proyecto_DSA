@@ -142,33 +142,27 @@ public class DAO_ObjetoImpl{
     }
 
     public Objeto dameObjetosUsuariodeInventario(Usuario u, int idOb) throws SQLException {
-        Statement stm = null;
-        ResultSet rs = null;
-        String query = "SELECT idObjeto FROM inventario WHERE nombreUsuario='" + u.getNombre() + "'";
+        String query = "SELECT nombreObjeto FROM objetos WHERE idUsuario='" + u.getIdUsuario() + "'";
+        Statement stm = ConnBBDD.conn.createStatement();
         Objeto o = null;
-        try {
-            rs = stm.executeQuery(query);
-            o = null;
-            while(rs.next()){
+        System.out.println("Aqui llego 2");
+        ResultSet rs = stm.executeQuery(query);
+            if (rs.next()){
                 o = consultarObjeto(rs.getInt("idObjeto"));
+                System.out.println("El usuario: " + u.getNombre() + " tiene el objeto " + o.getNombreObjeto());
             }
             if (idOb != o.getIdObjeto()){
                 o = null;
             }
-            rs.close();
             stm.close();
-        } catch (SQLException e) {
-            System.out.println("Error funcion dameObjetosUsuario");
-            e.printStackTrace();
-        }
-        return o;
-
+            rs.close();
+            return o;
     }
 
     //no funciona
     public List<Objeto> listarInventarioUsuario(Usuario u) throws SQLException {
         Statement stm = ConnBBDD.conn.createStatement();
-        String query = "SELECT idObjeto FROM inventario WHERE nombreUsuario='" + u.getNombre() + "'";
+        String query = "SELECT nombreObjeto FROM objetos WHERE idUsuario='" + u.getIdUsuario() + "'";
         List<Objeto> objetos = new ArrayList<Objeto>();
         ResultSet rs = stm.executeQuery(query);
         try {
