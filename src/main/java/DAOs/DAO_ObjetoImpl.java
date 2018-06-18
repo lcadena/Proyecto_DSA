@@ -48,29 +48,10 @@ public class DAO_ObjetoImpl{
         return añadirO;
     }
 
-    public boolean insertarObjInventario (Usuario u, Objeto o) throws SQLException {
-        boolean insert = true;
-        String query = "INSERT INTO inventario VALUES (?,?)";
-        try {
-            PreparedStatement ps = ConnBBDD.conn.prepareStatement(query);
-            //ps.setInt(1, u.getIdUsuario());
-            ps.setInt(1, o.getIdObjeto());
-            ps.setString(2, u.getNombre());
-
-            ps.executeUpdate();
-            System.out.println("Se ha añadido al inventario del usuario " + u.getNombre() + " el objeto " + o.getNombreObjeto());
-            // nullpointer
-            ps.close();
-        } catch (SQLException e){
-            System.out.println("Error en el registro");
-            e.printStackTrace();
-        }
-        return insert;
-    }
 
     /////metodo SELECT
     public Objeto consultarObjeto(int id) throws SQLException{
-        String query = "SELECT * FROM objetos WHERE idUsuario='" + id + "'";
+        String query = "SELECT * FROM objetos WHERE nombreObjeto='" + id + "'";
         Statement stm = ConnBBDD.conn.createStatement();
         ResultSet rs = stm.executeQuery(query);
         System.out.println("Aqui llego también");
@@ -93,7 +74,8 @@ public class DAO_ObjetoImpl{
         String query = "SELECT * FROM objetos WHERE nombreObjeto='" + nombreOb + "'";
         Statement stm = ConnBBDD.conn.createStatement();
         ResultSet rs = stm.executeQuery(query);
-        if (rs.next()){
+        while (rs.next()){
+
             objeto.setIdObjeto(rs.getInt("idObjeto"));
             objeto.setIdUsuario(rs.getInt("idUsuario"));
             objeto.setNombreObjeto(rs.getString("nombreObjeto"));
@@ -160,7 +142,7 @@ public class DAO_ObjetoImpl{
             return o;
     }
 
-    //no funciona
+
     public List<Objeto> listarInventarioUsuario(Usuario u) throws SQLException {
         Statement stm = ConnBBDD.conn.createStatement();
         String query = "SELECT objetos.idObjeto,objetos.idUsuario,objetos.nombreObjeto,objetos.urlObjeto,objetos.descripcion FROM objetos INNER JOIN usuarios on objetos.idUsuario = usuarios.idUsuario WHERE usuarios.nombreUsuario='" + u.getNombre() + "'";
@@ -212,23 +194,6 @@ public class DAO_ObjetoImpl{
             e.printStackTrace();
         }
         return eliminarO;
-    }
-
-    public boolean eliminarObjetoInventario(Usuario u, Objeto o){
-        boolean eliminarOI = false;
-        Statement stm = null;
-        Connection conn;
-        try {
-            String query = "DELETE FROM inventario WHERE objeto='" + o.getNombreObjeto() + "'";
-            stm = ConnBBDD.conn.createStatement();
-            stm.execute(query);
-            eliminarOI = true;
-            System.out.println("Se ha eliminado el objeto " + o.getNombreObjeto() + " del usuario " + u.getNombre());
-        } catch (SQLException e) {
-            System.out.println("Error eliminando objeto");
-            e.printStackTrace();
-        }
-        return eliminarOI;
     }
 
     //metodo UPDATE

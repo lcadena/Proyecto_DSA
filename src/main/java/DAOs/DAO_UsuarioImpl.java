@@ -3,8 +3,6 @@ package DAOs;
 import Proyecto.Usuario;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class DAO_UsuarioImpl{
 
@@ -60,6 +58,7 @@ public class DAO_UsuarioImpl{
         } else {
             Connection conn;
             PreparedStatement ps = null;
+            //String query = "INSERT INTO usuarios VALUES (?,?,MD5(?))";
             String query = "INSERT INTO usuarios VALUES (?,?,?)";
             try {
                 ps = ConnBBDD.conn.prepareStatement(query);
@@ -118,29 +117,6 @@ public class DAO_UsuarioImpl{
         stm.close();
         return consulta;
     }
-    ///Lista usuarios ordenados por nombre
-    public List<Usuario> listaUsuarios(){
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        List<Usuario> usuarios = new ArrayList<Usuario>();
-        try {
-            String query = "SELECT * FROM usuarios WHERE nombreUsuario IS NOT NULL ORDER BY nombreUsuario";
-            ps = ConnBBDD.conn.prepareStatement(query);
-            rs = ps.executeQuery();
-            while (rs.next()){
-                Usuario u = new Usuario();
-                u.setIdUsuario(rs.getInt("isUsuario"));
-                u.setNombre(rs.getString("nombreUsuario"));
-                u.setPassword(rs.getString("contraseña"));
-                usuarios.add(u);
-            }
-            ps.close();
-            rs.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return usuarios;
-    }
 
     public boolean autentificarUsuario(String nombre, String contraseña) throws SQLException {
         boolean autentificar = false;
@@ -148,13 +124,13 @@ public class DAO_UsuarioImpl{
         ResultSet rs = null;
             try {
                 stm = ConnBBDD.conn.createStatement();
-                String query = "SELECT * FROM usuarios WHERE nombreUsuario='" + nombre + "' AND contraseña='" + contraseña +"'";
+                String query = "SELECT * FROM usuarios WHERE nombreUsuario='" + nombre + "' AND contraseña= '" + contraseña + "'";
                 rs = stm.executeQuery(query);
                 if (rs.next()) {
                     autentificar = true;
                     System.out.println("Bienvenido");
                 } else {
-                    System.out.println("Usuario no encontrado, registrese");
+                    System.out.println("Usuario  no encontrado, registrese");
                 }
             } catch (SQLException e) {
 

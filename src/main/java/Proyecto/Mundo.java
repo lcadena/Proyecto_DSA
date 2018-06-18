@@ -80,28 +80,6 @@ public class Mundo {
         return objetos;
     }
 
-    public boolean daoAñadirObjetoaUsuario(int id, String nombre) throws SQLException{
-        boolean resultado = true;
-        conn.conectar();
-        Usuario u = usuario.consultarUsuario(nombre);
-        Objeto o = objeto.consultarObjeto(id);
-        conn.desconectar();
-        List<Objeto> misObjetos = listaObjetosdeUsuario(nombre);
-        for (Objeto ob2 : misObjetos) {
-            if (ob2.getIdObjeto() == id){
-                resultado = false;
-            }
-        }
-        if (resultado){
-            conn.conectar();
-            System.out.println("llegoinsert");
-            resultado = objeto.insertarObjInventario(u, o);
-            System.out.println("llegodespuesinsert");
-            conn.desconectar();
-        }
-        return resultado;
-    }
-
     public Objeto daoConsultarObjeto(int id)throws SQLException{
         Objeto o;
         conn.conectar();
@@ -109,15 +87,6 @@ public class Mundo {
         conn.desconectar();
         return o;
     }
-
-/*    public Objeto daoConsultarObjetosUsuario(Usuario u, int idObj) throws SQLException{
-        conn.conectar();
-        System.out.println("Aqui llego 1");
-        Objeto obj = objeto.dameObjetosUsuariodeInventario(u, idObj);
-        System.out.println("Aqui llego 3");
-        conn.desconectar();
-        return obj;
-    }*/
 
     public Objeto daoConsultarObjetoNom(String nombre)throws SQLException{
         Objeto o;
