@@ -182,6 +182,7 @@
                         success: function (data, status) {
                             alert("Data: " + data + "\n Status: " + status);
                             console.log(data)
+
                         }
                     });
                 });
@@ -290,20 +291,6 @@
 
     <!-- Add Google Maps -->
     <script>
-        function myMap()
-        {
-            myCenter=new google.maps.LatLng(41.279878528595646, 1.9873910641895236);
-            var mapOptions= {
-                center:myCenter,
-                zoom:12, scrollwheel: false, draggable: false,
-                mapTypeId:google.maps.MapTypeId.ROADMAP
-            };
-            var map=new google.maps.Map(document.getElementById("googleMap"),mapOptions);
-            var marker = new google.maps.Marker({
-                position: myCenter,
-            });
-            marker.setMap(map);
-        }
         // Modal Image Gallery
         function onClick(element) {
             document.getElementById("img01").src = element.src;

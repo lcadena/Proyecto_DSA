@@ -177,8 +177,8 @@ public class DAO_ObjetoImpl{
                     o.setUrlObjeto(rs.getString("urlObjeto"));
                     o.setDescripcion(rs.getString("descripcion"));
                     objetos.add(o);
-                    System.out.println(objetos);
-                    //System.out.println("Objeto " + o.getNombreObjeto() + " con descripcion " + o.getDescripcion() + " con url " + o.getUrlObjeto());
+                    //System.out.println(objetos);
+                    System.out.println(o.getNombreObjeto());
                 }
 
             //System.out.println(objetos);
