@@ -1,5 +1,6 @@
 package DAOs;
 
+import Proyecto.Login;
 import Proyecto.Mundo;
 import Proyecto.Objeto;
 import Proyecto.Usuario;
@@ -13,16 +14,18 @@ public class MainDAOs {
         DAO_UsuarioImpl usuario = new DAO_UsuarioImpl();
         DAO_ObjetoImpl objeto = new DAO_ObjetoImpl();
         Mundo m = new Mundo();
-        Usuario u = new Usuario(11,"Arnau", "777");
+        Login log = new Login("Liz","222");
+        Usuario u = new Usuario(11,"Liz", "222");
         Objeto obj = new Objeto(4, 9,"Lanza","/web/images","dkdkmkefnken");
         //usuario.registroUsuario(u);
 
         try {
             //objeto.insertarObjInventario(u, obj);
             //m.lista();
-            m.daoRegistroUsuario(u);
+            //m.daoRegistroUsuario(u);
             //m.daoEliminarUsuario(u);
             //m.daoConsultarUsuario("Liz");
+            //m.daoInicioSesionUsuario(log);
             //m.daoValidarUsuario("Liz", "222");
             //m.daoUpdatePasswordUsuario("Liz", "222");
             //m.daoAñadirObjeto(obj);
@@ -34,7 +37,7 @@ public class MainDAOs {
             //m.daoConsultarObjetosUsuario(u.getNombre());
             //m.daoConsultarObjetosUsuario("Pablo");
             //m.daoAñadirObjetoaUsuario(2, "Laura");
-            //m.daoConsultarObjetosUsuario(u, obj.getIdObjeto());
+            m.daoConsultarObjetosUsuario("Liz");
         } catch (SQLException e){
             e.printStackTrace();
         }

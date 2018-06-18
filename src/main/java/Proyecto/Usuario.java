@@ -30,7 +30,7 @@ public class Usuario {
     }
     public Usuario(int idUsuario, String nombreUsuario, String contraseña){
         this.idUsuario = idUsuario;
-        this.nombre = nombre;
+        this.nombre = nombreUsuario;
         this.password = contraseña;
     }
 

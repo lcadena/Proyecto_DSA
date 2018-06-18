@@ -110,14 +110,14 @@ public class Mundo {
         return o;
     }
 
-    public Objeto daoConsultarObjetosUsuario(Usuario u, int idObj) throws SQLException{
+/*    public Objeto daoConsultarObjetosUsuario(Usuario u, int idObj) throws SQLException{
         conn.conectar();
         System.out.println("Aqui llego 1");
         Objeto obj = objeto.dameObjetosUsuariodeInventario(u, idObj);
         System.out.println("Aqui llego 3");
         conn.desconectar();
         return obj;
-    }
+    }*/
 
     public Objeto daoConsultarObjetoNom(String nombre)throws SQLException{
         Objeto o;

@@ -1,11 +1,15 @@
 package REST;
 
-import Proyecto.*;
+import Proyecto.Mundo;
+import Proyecto.MundoSingleton;
+import Proyecto.Objeto;
+import Proyecto.Usuario;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.sql.SQLException;
+import java.util.List;
 
 
 @Path("/json")
@@ -84,5 +88,11 @@ public class JSONService {
        return Response.status(201).entity(obj).build();
     }
 
+    @GET
+    @Path("/listar/{nombreU}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Objeto> getInventario(@PathParam("nombreU") String nombreU) throws SQLException {
+        return mundo.daoConsultarObjetosUsuario(nombreU);
+    }
 
 }

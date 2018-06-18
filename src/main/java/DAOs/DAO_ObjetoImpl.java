@@ -70,10 +70,11 @@ public class DAO_ObjetoImpl{
 
     /////metodo SELECT
     public Objeto consultarObjeto(int id) throws SQLException{
-        Objeto o = new Objeto();
-        String query = "SELECT * FROM objetos WHERE idObjeto='" + id + "'";
+        String query = "SELECT * FROM objetos WHERE idUsuario='" + id + "'";
         Statement stm = ConnBBDD.conn.createStatement();
         ResultSet rs = stm.executeQuery(query);
+        System.out.println("Aqui llego también");
+        Objeto o = new Objeto();
         if (rs.next()){
             o.setIdObjeto(rs.getInt("idObjeto"));
             o.setIdUsuario(rs.getInt("idUsuario"));
@@ -162,15 +163,31 @@ public class DAO_ObjetoImpl{
     //no funciona
     public List<Objeto> listarInventarioUsuario(Usuario u) throws SQLException {
         Statement stm = ConnBBDD.conn.createStatement();
-        String query = "SELECT nombreObjeto FROM objetos WHERE idUsuario='" + u.getIdUsuario() + "'";
+        String query = "SELECT objetos.idObjeto,objetos.idUsuario,objetos.nombreObjeto,objetos.urlObjeto,objetos.descripcion FROM objetos INNER JOIN usuarios on objetos.idUsuario = usuarios.idUsuario WHERE usuarios.nombreUsuario='" + u.getNombre() + "'";
         List<Objeto> objetos = new ArrayList<Objeto>();
         ResultSet rs = stm.executeQuery(query);
+
         try {
-            if (rs.next()) {
-                objetos.add(consultarObjeto(rs.getInt("idObjeto")));
-            }
+
+                while (rs.next()) {
+                    Objeto o = new Objeto();
+                    o.setIdObjeto(rs.getInt("idObjeto"));
+                    o.setIdUsuario(rs.getInt("idUsuario"));
+                    o.setNombreObjeto(rs.getString("nombreObjeto"));
+                    o.setUrlObjeto(rs.getString("urlObjeto"));
+                    o.setDescripcion(rs.getString("descripcion"));
+                    objetos.add(o);
+                    System.out.println(objetos);
+                    //System.out.println("Objeto " + o.getNombreObjeto() + " con descripcion " + o.getDescripcion() + " con url " + o.getUrlObjeto());
+                }
+
+            //System.out.println(objetos);
+
         } catch (SQLException e) {
             e.printStackTrace();
+            throw new Exception("El usuario no tiene objetos");
+            //System.out.println("El usuario no tiene objetos");
+
         } finally {
             stm.close();
             rs.close();
