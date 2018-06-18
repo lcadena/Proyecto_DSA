@@ -42,7 +42,7 @@
                     <i class="fa fa-user-plus"></i> Registro
                 </button>-->
 
-                <p><input id="username" class="w3-input w3-padding-16 w3-half" type="text" placeholder="Usuario" required name="Usuario"></p>
+                <!--<p><input id="username" class="w3-input w3-padding-16 w3-half" type="text" placeholder="Usuario" required name="Usuario"></p>-->
                 <!--<p><input class="w3-input w3-padding-16 w3" type="text" placeholder="Name" required name="Name"></p>-->
         <!--        <p>
                    <button class="w3-button w3-light-grey w3-padding-large" id="buttonHistorialOb" type="submit">
@@ -62,7 +62,8 @@
             <div class="w3-row-padding w3-center">
                 <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
                     <div class="w3-half">
-                        <input id="nombre" class="w3-input w3-border" type="text" placeholder="Usuario" required name="Usuario">
+                        <!--<input id="nombre" class="w3-input w3-border" type="text" placeholder="Usuario" required name="Usuario">-->
+                        <p><input id="username" class="w3-input w3-padding-16 w3-half" type="text" placeholder="Usuario" required name="Usuario"></p>
                     </div>
                 </div>
                 <button class="w3-button w3-light-grey w3-center w3-section" id="buttonHistorialOb" type="submit">
@@ -98,7 +99,6 @@
                                 sessionStorage.getItem("nombreObjeto", nombreObjeto)
                                 sessionStorage.getItem("urlObjeto", urlObjeto)
                                 sessionStorage.getItem("descripcion", descripcion)
-                                window.location.assign(urL + '/jugador.html')
                             }
                         });
                     });

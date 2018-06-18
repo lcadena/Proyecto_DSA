@@ -1,16 +1,16 @@
 package Proyecto;
 
-public class Login {
+public class LogIn {
 
 
     private String nombre;
     private  String password;
 
-    public Login(){
+    public LogIn(){
 
     }
 
-    public Login(String nombre, String password){
+    public LogIn(String nombre, String password){
         nombre=this.nombre;
         password=this.password;
 

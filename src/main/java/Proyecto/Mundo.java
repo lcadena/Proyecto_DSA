@@ -29,7 +29,7 @@ public class Mundo {
         conn.desconectar();
         return r;
     }
-    public boolean daoInicioSesionUsuario(Proyecto.Login login)throws SQLException{
+    public boolean daoInicioSesionUsuario(LogIn login)throws SQLException{
         conn.conectar();
         boolean r = usuario.autentificarUsuario(login.getNombre(), login.getPassword());
         conn.desconectar();

@@ -1,9 +1,6 @@
 package REST;
 
-import Proyecto.Mundo;
-import Proyecto.MundoSingleton;
-import Proyecto.Objeto;
-import Proyecto.Usuario;
+import Proyecto.*;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -54,7 +51,7 @@ public class JSONService {
     @POST
     @Path("/inicio")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response inicioSesion (Proyecto.Login login) throws SQLException {
+    public Response inicioSesion (LogIn login) throws SQLException {
         System.out.println(login.getNombre() + login.getPassword());
         boolean r = mundo.daoInicioSesionUsuario(login);
         if(r){

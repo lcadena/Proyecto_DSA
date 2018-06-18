@@ -1,6 +1,6 @@
 package DAOs;
 
-import Proyecto.Login;
+import Proyecto.LogIn;
 import Proyecto.Mundo;
 import Proyecto.Objeto;
 import Proyecto.Usuario;
@@ -14,7 +14,7 @@ public class MainDAOs {
         DAO_UsuarioImpl usuario = new DAO_UsuarioImpl();
         DAO_ObjetoImpl objeto = new DAO_ObjetoImpl();
         Mundo m = new Mundo();
-        Login log = new Login("Liz","222");
+        LogIn log = new LogIn("Liz","222");
         Usuario u = new Usuario(11,"Liz", "222");
         Objeto obj = new Objeto(4, 9,"Lanza","/web/images","dkdkmkefnken");
         //usuario.registroUsuario(u);
