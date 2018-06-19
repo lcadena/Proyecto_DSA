@@ -75,7 +75,6 @@ public class DAO_ObjetoImpl{
         Statement stm = ConnBBDD.conn.createStatement();
         ResultSet rs = stm.executeQuery(query);
         while (rs.next()){
-
             objeto.setIdObjeto(rs.getInt("idObjeto"));
             objeto.setIdUsuario(rs.getInt("idUsuario"));
             objeto.setNombreObjeto(rs.getString("nombreObjeto"));

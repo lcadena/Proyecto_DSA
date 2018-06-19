@@ -63,7 +63,7 @@
                 <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
                     <div class="w3-half">
                         <!--<input id="nombre" class="w3-input w3-border" type="text" placeholder="Usuario" required name="Usuario">-->
-                        <p><input id="username" class="w3-input w3-padding-16 w3-half" type="text" placeholder="Usuario" required name="Usuario"></p>
+                        <p><input id="username" class="w3-input w3-padding-16 w3-center" type="text" placeholder="Usuario" required name="Usuario"></p>
                     </div>
                 </div>
                 <button class="w3-button w3-light-grey w3-center w3-section" id="buttonHistorialOb" type="submit">
@@ -74,11 +74,23 @@
                 <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
                     <div class="w3-half">
                         <!--<input id="nombre" class="w3-input w3-border" type="text" placeholder="Usuario" required name="Usuario">-->
-                        <p><input id="contraseña" class="w3-input w3-padding-16 w3-half" type="text" placeholder="Nueva Contraseña" required name="Nueva Contraseña"></p>
+                        <p><input id="contraseña" class="w3-input w3-padding-16 w3-center" type="text" placeholder="Nueva Contraseña" required name="Nueva Contraseña"></p>
                     </div>
                 </div>
                 <button class="w3-button w3-light-grey w3-center w3-section" id="buttonUpdatePwd" type="submit">
                     <i class="fa fa-database"></i> Modificar
+                </button>
+            </div>
+            </div>
+            <div class="w3-row-padding w3-center">
+                <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+                    <div class="w3-half">
+                        <!--<input id="nombre" class="w3-input w3-border" type="text" placeholder="Usuario" required name="Usuario">-->
+                        <p><input id="usuarioeliminar" class="w3-input w3-padding-16 w3-center" type="text" placeholder="Usuario" required name="Usuario"></p>
+                    </div>
+                </div>
+                <button class="w3-button w3-light-grey w3-center w3-section" id="buttonDeleteUser" type="submit">
+                    <i class="fa fa-database"></i> Eliminar Usuario
                 </button>
             </div>
             </div>
@@ -108,8 +120,8 @@
                                 sessionStorage.getItem("nombreObjeto", nombreObjeto)
                                 sessionStorage.getItem("urlObjeto", urlObjeto)
                                 sessionStorage.getItem("descripcion", descripcion)
-                                alert("Data: " + data + "\n Status: " + status);
-                                alert("El usuario " + $("#username").val() + "\n tiene " + data.length + "objetos" )
+                                //alert("Data: " + data + "\n Status: " + status);
+                                alert("El usuario " + $("#username").val() + "\n tiene " + data.length + "\n objetos" )
                                 //alert(sessionStorage.getItem("nombreObjeto", data.nombreObjeto))
                                 console.log(data)
                                 //alert(nombreObjeto, nombreObjeto, nombreObjeto)
@@ -132,6 +144,28 @@
                         data: JSON.stringify({
                         nombreUsuario: $("#username").val(),
                         contraseña: $("#contraseña").val()
+                        }),
+                        success: function (data, status) {
+                            alert("Se ha modificado su contraseña")
+                            //alert("Data: " + data + "\n Status: " + status);
+                            console.log(data)
+                        }
+                    });
+                });
+            });
+        </script>
+        <script>
+            $(document).ready(function () {
+                var url = 'http://192.168.56.1:8080/myapp/json';
+                $("#buttonDeleteUser").click(function () {
+                    $.ajax({
+                        url: url + '/eliminarUsuario',
+                        type: 'post',
+                        dataType: 'json',
+                        contentType: 'application/json',
+                        data: JSON.stringify({
+                            nombre: $("#usuarioeliminar").val(),
+                            //contraseña: $("#contraseña").val()
                         }),
                         success: function (data, status) {
                             alert("Data: " + data + "\n Status: " + status);

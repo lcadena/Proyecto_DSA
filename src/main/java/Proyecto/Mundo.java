@@ -54,6 +54,17 @@ public class Mundo {
         conn.conectar();
         u = usuario.consultarUsuario(nombre);
         conn.desconectar();
+        System.out.println(u);
+
+        return u;
+    }
+    public Usuario daoInfoUserconEcenario(String nombre)throws SQLException{
+        Usuario u;
+        conn.conectar();
+        u = usuario.infoUserconEscenario(nombre);
+        conn.desconectar();
+        System.out.println(u);
+
         return u;
     }
     //Elimina usaurios por el nombre

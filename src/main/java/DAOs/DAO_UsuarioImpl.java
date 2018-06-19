@@ -64,7 +64,7 @@ public class DAO_UsuarioImpl{
                 ps = ConnBBDD.conn.prepareStatement(query);
                 ps.setInt(1, u.getIdUsuario());
                 ps.setString(2, u.getNombre());
-                ps.setString(3, u.getPassword());
+                ps.setString(3, u.getContraseña());
                 ps.setInt(4, u.getPosX());
                 ps.setInt(5, u.getPosY());
                 ps.setString(6, u.getNombreEscenario());
@@ -95,11 +95,13 @@ public class DAO_UsuarioImpl{
         String query = "SELECT * FROM usuarios WHERE nombreUsuario='" + nombre + "'";
         Statement stm = ConnBBDD.conn.createStatement();
         ResultSet rs = stm.executeQuery(query);
+        System.out.println(query);
+
         if (rs.next()){
-            //u.setIdUsuario(rs.getInt("idUsuario"));
-            u.setNombre(rs.getString("nombreUsuario"));
-            u.setPassword(rs.getString("contraseña"));
-            System.out.println("Usuario: " + u.getNombre() + " con contraseña: " + u.getPassword() );
+            u.setIdUsuario(rs.getInt("idUsuario"));
+            u.setNombreUsuario(rs.getString("nombreUsuario"));
+            u.setContraseña(rs.getString("contraseña"));
+            System.out.println("Usuario: " + u.getNombre() + " con contraseña: " + u.getContraseña() );
         }
         rs.close();
         stm.close();
@@ -112,14 +114,16 @@ public class DAO_UsuarioImpl{
        String query = "SELECT * FROM usuarios WHERE nombreUsuario='" + nombreUsuario + "'";
        Statement statement = ConnBBDD.conn.createStatement();
        ResultSet rs = statement.executeQuery(query);
-       if (rs.next()) {
+        System.out.println(query);
+
+        if (rs.next()) {
            u.setIdUsuario(rs.getInt("idUsuario"));
-           u.setNombre(rs.getString("nombreUsuario"));
-           u.setPassword(rs.getString("contraseña"));
+           u.setNombreUsuario(rs.getString("nombreUsuario"));
+           u.setContraseña(rs.getString("contraseña"));
            u.setPosX(rs.getInt("posX"));
            u.setPosY(rs.getInt("posY"));
            u.setNombreEscenario(rs.getString("nombreEscenario"));
-           System.out.println("Usuario " + nombreUsuario + " en la posición " + u.getPosX() + " " + u.getPosY() + " en el escenario " + u.getNombreEscenario());
+           System.out.println("Usuario " + nombreUsuario + "id" + u.getIdUsuario() +" en la posición " + u.getPosX() + " " + u.getPosY() + " en el escenario " + u.getNombreEscenario());
        } else {
            System.out.println("Usuario inexistente");
        }

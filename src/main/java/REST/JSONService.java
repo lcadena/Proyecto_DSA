@@ -77,12 +77,30 @@ public class JSONService {
     @Path("/updatePwd")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response updatePasswordUser (Usuario u) throws SQLException{
-        boolean r = mundo.daoUpdatePasswordUsuario(u.getNombre(), u.getPassword());
+        boolean r = mundo.daoUpdatePasswordUsuario(u.getNombre(), u.getContraseña());
         if (r){
             return Response.status(201).entity(r).build();
         } else {
             r = false;
             return Response.status(409).entity(r).build();
+        }
+    }
+    @POST
+    @Path("/eliminarUsuario")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response eliminarUsuario (String nombreUsuario) throws SQLException{
+        Usuario u = this.mundo.daoConsultarUsuario(nombreUsuario);
+        System.out.println(u);
+
+        if (u == null){
+            return Response.status(409).entity("Usuario no registrado").build();
+        } else {
+            boolean r = mundo.daoEliminarUsuario(u);
+            if (r){
+                return Response.status(201).entity("Usuario eliminado correctamente").build();
+            } else {
+                return Response.status(201).entity("Error al eliminar").build();
+            }
         }
     }
 
@@ -103,6 +121,24 @@ public class JSONService {
             return Response.status(409).entity(u).build();
         } else {
             return Response.status(201).entity(u).build();
+        }
+
+    }
+
+    @GET
+    @Path("/infoUser/{nombre}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getInfoUser(@PathParam("nombre") String nombre) throws SQLException {
+        Usuario u = mundo.daoInfoUserconEcenario(nombre);
+        if (u == null) {
+            return Response.status(409).entity(u).build();
+        } else {
+            System.out.println(u.getIdUsuario());
+            int id = u.getIdUsuario();
+            String name = u.getNombre();
+
+             Usuario v = new Usuario(id, name);
+                return Response.status(201).entity(v.getIdUsuario()).build();
         }
 
     }

@@ -29,7 +29,8 @@ public class MainDAOs {
             //m.daoInicioSesionUsuario(log);
             //m.daoValidarUsuario("Liz", "222");
             //m.daoUpdatePasswordUsuario("Liz", "pooo");
-            m.daoAñadirObjeto(obj);
+            m.daoInfoUserconEcenario("Liz");
+            m.daoConsultarUsuario("Anna");
             //m.daoElegirObjeto("Catana");
             //m.daoEliminarObjeto(obj);
             //m.daoUpdateValorObjeto("Espada", 400);
