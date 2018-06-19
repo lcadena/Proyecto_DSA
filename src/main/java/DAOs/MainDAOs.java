@@ -15,7 +15,7 @@ public class MainDAOs {
         DAO_ObjetoImpl objeto = new DAO_ObjetoImpl();
         Mundo m = new Mundo();
         LogIn log = new LogIn("Liz", "222");
-        Usuario u = new Usuario(21,"Pepe", "2323", 0, 0);
+        Usuario u = new Usuario(23,"Tomas","2323",3,2,"bosque");
         Objeto obj = new Objeto(4, 9,"Lanza","/web/images","dkdkmkefnken");
         //usuario.registroUsuario(u);
 
@@ -23,8 +23,9 @@ public class MainDAOs {
             //objeto.insertarObjInventario(u, obj);
             //m.lista();
             //m.daoRegistroUsuario(u);
+            m.posicionyEscenariodeUsuario("Tomas");
             //m.daoEliminarUsuario(u);
-            m.daoConsultarUsuario("Liz");
+            //m.daoConsultarUsuario("Liz");
             //m.daoInicioSesionUsuario(log);
             //m.daoValidarUsuario("Liz", "222");
             //m.daoUpdatePasswordUsuario("Liz", "355");

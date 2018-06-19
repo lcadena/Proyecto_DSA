@@ -59,7 +59,7 @@ public class DAO_UsuarioImpl{
             Connection conn;
             PreparedStatement ps = null;
             //String query = "INSERT INTO usuarios VALUES (?,?,MD5(?))";
-            String query = "INSERT INTO usuarios VALUES (?,?,?.?,?)";
+            String query = "INSERT INTO usuarios VALUES (?,?,?,?,?,?)";
             try {
                 ps = ConnBBDD.conn.prepareStatement(query);
                 ps.setInt(1, u.getIdUsuario());
@@ -67,6 +67,7 @@ public class DAO_UsuarioImpl{
                 ps.setString(3, u.getPassword());
                 ps.setInt(4, u.getPosX());
                 ps.setInt(5, u.getPosY());
+                ps.setString(6, u.getNombreEscenario());
                 ps.executeUpdate();
                 System.out.println("Usuario " + u.getNombre() + " registrado correctamente");
                 // nullpointer
@@ -108,13 +109,19 @@ public class DAO_UsuarioImpl{
     //funcion que devuelve info de usuario
     public Usuario infoUserconEscenario(String nombreUsuario) throws SQLException{
        Usuario u = new Usuario() ;
-       String query = "SELECT * FROM usuario WHERE nombreUsuario='" + nombreUsuario + "'";
+       String query = "SELECT * FROM usuarios WHERE nombreUsuario='" + nombreUsuario + "'";
        Statement statement = ConnBBDD.conn.createStatement();
        ResultSet rs = statement.executeQuery(query);
        if (rs.next()) {
            u.setIdUsuario(rs.getInt("idUsuario"));
            u.setNombre(rs.getString("nombreUsuario"));
            u.setPassword(rs.getString("contraseña"));
+           u.setPosX(rs.getInt("posX"));
+           u.setPosY(rs.getInt("posY"));
+           u.setNombreEscenario(rs.getString("nombreEscenario"));
+           System.out.println("Usuario " + nombreUsuario + " en la posición " + u.getPosX() + " " + u.getPosY() + " en el escenario " + u.getNombreEscenario());
+       } else {
+           System.out.println("Usuario inexistente");
        }
        rs.close();
        statement.close();
@@ -162,7 +169,9 @@ public class DAO_UsuarioImpl{
                     e.printStackTrace();
                 }
             }
+        System.out.println(autentificar);
         return autentificar;
+
     }
 
     //metodo DELETE

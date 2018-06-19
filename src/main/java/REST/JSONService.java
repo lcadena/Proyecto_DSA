@@ -41,10 +41,10 @@ public class JSONService {
     public Response newUsuario (Usuario u) throws SQLException {
         boolean r = mundo.daoRegistroUsuario(u);
         if(r){
-            return Response.status(201).entity("Registro correcto").build();
+            return Response.status(201).entity(r).build();
         } else {
             r = false;
-            return Response.status(409).entity("Usuario existente").build();
+            return Response.status(409).entity(r).build();
         }
     }
 
@@ -52,13 +52,12 @@ public class JSONService {
     @Path("/inicio")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response inicioSesion (LogIn login) throws SQLException {
-        System.out.println(login.getNombre() + login.getPassword());
         boolean r = mundo.daoInicioSesionUsuario(login);
         if(r){
-            return Response.status(201).entity("Loguin correcto").build();
+            return Response.status(201).entity(r).build();
         } else {
             r = false;
-            return Response.status(409).entity("Error al loguearse, registrese").build();
+            return Response.status(409).entity(r).build();
         }
     }
     @POST

@@ -11,6 +11,7 @@ public class Usuario {
     private int resistencia;
     private int posX;
     private int posY;
+    private String nombreEscenario;
     //public LinkedList<Objeto> miInventario = new LinkedList<Objeto>();
 
     /*public Usuario(String nombre, String contraseña, int nivel, int ataque, int defensa, int resitencia){
@@ -24,19 +25,17 @@ public class Usuario {
     public Usuario(){
 
     }
-    public Usuario( String nombreUsuario, String contraseña){
-        this.nombre = nombre;
-        this.password = contraseña;
-    }
-    public Usuario(int idUsuario, String nombreUsuario, String contraseña, int posX, int posY){
+    public Usuario(int idUsuario, String nombreUsuario, String contraseña, int posX, int posY, String nombreEscenario){
         this.idUsuario = idUsuario;
         this.nombre = nombreUsuario;
         this.password = contraseña;
         this.posX = posX;
         this.posY = posY;
+        this.nombreEscenario = nombreEscenario;
     }
-    public Usuario(int idUsuario, String nombreUsuario, String contraseña){
-        this.idUsuario = idUsuario;
+
+    public Usuario(String nombreUsuario, String contraseña){
+        //this.idUsuario = idUsuario;
         this.nombre = nombreUsuario;
         this.password = contraseña;
     }
@@ -86,6 +85,15 @@ public class Usuario {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
+    public String getNombreEscenario() {
+        return nombreEscenario;
+    }
+
+    public void setNombreEscenario(String nombreEscenario) {
+        this.nombreEscenario = nombreEscenario;
+    }
+
 
     public void setPassword(String password) {
         this.password = password;
