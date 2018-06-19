@@ -20,14 +20,13 @@ public class DAO_ObjetoImpl{
         } else {
             Connection conn;
             PreparedStatement ps = null;
-            String query = "INSERT INTO objetos VALUES (?,?,?,?,?)";
+            String query = "INSERT INTO objetos VALUES (?,?,?,?,)";
             try {
                 ps = ConnBBDD.conn.prepareStatement(query);
                 ps.setInt(1, o.getIdObjeto());
                 ps.setInt(2, o.getIdUsuario());
                 ps.setString(3, o.getNombreObjeto());
                 ps.setString(4, o.getUrlObjeto());
-                ps.setString(5, o.getDescripcion());
                 ps.executeUpdate();
                 System.out.println("Objeto añadido correctamente");
                 // nullpointer

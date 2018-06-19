@@ -1,7 +1,5 @@
 package Proyecto;
 
-import java.util.LinkedList;
-
 public class Usuario {
 
     int idUsuario;
@@ -11,7 +9,9 @@ public class Usuario {
     private int ataque;
     private int defensa;
     private int resistencia;
-    public LinkedList<Objeto> miInventario = new LinkedList<Objeto>();
+    private int posX;
+    private int posY;
+    //public LinkedList<Objeto> miInventario = new LinkedList<Objeto>();
 
     /*public Usuario(String nombre, String contraseña, int nivel, int ataque, int defensa, int resitencia){
             this.nombre = nombre;
@@ -28,6 +28,13 @@ public class Usuario {
         this.nombre = nombre;
         this.password = contraseña;
     }
+    public Usuario(int idUsuario, String nombreUsuario, String contraseña, int posX, int posY){
+        this.idUsuario = idUsuario;
+        this.nombre = nombreUsuario;
+        this.password = contraseña;
+        this.posX = posX;
+        this.posY = posY;
+    }
     public Usuario(int idUsuario, String nombreUsuario, String contraseña){
         this.idUsuario = idUsuario;
         this.nombre = nombreUsuario;
@@ -37,7 +44,7 @@ public class Usuario {
      public String getNombre(){
         return nombre;
      }
-     public Objeto getObjeto(String nombreob) {
+     /*public Objeto getObjeto(String nombreob) {
          int i = 0;
          boolean a = false;
          Objeto e = new Objeto();
@@ -54,7 +61,7 @@ public class Usuario {
              e =null;
 
          return e;
-     }
+     }*/
 
      public String getPassword() {
         return password;
@@ -100,9 +107,9 @@ public class Usuario {
         this.resistencia = resistencia;
     }
 
-    public void setMiInventario(LinkedList<Objeto> miInventario) {
+    /*public void setMiInventario(LinkedList<Objeto> miInventario) {
         this.miInventario = miInventario;
-    }
+    }*/
 
     public Integer getIdUsuario() {
         return idUsuario;
@@ -112,7 +119,22 @@ public class Usuario {
         this.idUsuario = idUsuario;
     }
 
-    public LinkedList<Objeto> getMiInventario() {
-        return miInventario;
+    //public LinkedList<Objeto> getMiInventario();
+
+    public int getPosX() {
+        return posX;
     }
+
+    public void setPosX(int posX) {
+        this.posX = posX;
+    }
+
+    public int getPosY() {
+        return posY;
+    }
+
+    public void setPosY(int posY) {
+        this.posY = posY;
+    }
+
 }

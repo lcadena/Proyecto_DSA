@@ -59,12 +59,14 @@ public class DAO_UsuarioImpl{
             Connection conn;
             PreparedStatement ps = null;
             //String query = "INSERT INTO usuarios VALUES (?,?,MD5(?))";
-            String query = "INSERT INTO usuarios VALUES (?,?,?)";
+            String query = "INSERT INTO usuarios VALUES (?,?,?.?,?)";
             try {
                 ps = ConnBBDD.conn.prepareStatement(query);
                 ps.setInt(1, u.getIdUsuario());
                 ps.setString(2, u.getNombre());
                 ps.setString(3, u.getPassword());
+                ps.setInt(4, u.getPosX());
+                ps.setInt(5, u.getPosY());
                 ps.executeUpdate();
                 System.out.println("Usuario " + u.getNombre() + " registrado correctamente");
                 // nullpointer
@@ -103,6 +105,21 @@ public class DAO_UsuarioImpl{
         return u;
 
     }
+    //funcion que devuelve info de usuario
+    public Usuario infoUserconEscenario(String nombreUsuario) throws SQLException{
+       Usuario u = new Usuario() ;
+       String query = "SELECT * FROM usuario WHERE nombreUsuario='" + nombreUsuario + "'";
+       Statement statement = ConnBBDD.conn.createStatement();
+       ResultSet rs = statement.executeQuery(query);
+       if (rs.next()) {
+           u.setIdUsuario(rs.getInt("idUsuario"));
+           u.setNombre(rs.getString("nombreUsuario"));
+           u.setPassword(rs.getString("contraseña"));
+       }
+       rs.close();
+       statement.close();
+       return u;
+    }
 
     public boolean usuarioenBBDD(Usuario u) throws SQLException{
         boolean consulta = false;
@@ -124,7 +141,7 @@ public class DAO_UsuarioImpl{
         ResultSet rs = null;
             try {
                 stm = ConnBBDD.conn.createStatement();
-                String query = "SELECT * FROM usuarios WHERE nombreUsuario='" + nombre + "' AND contraseña= '" + contraseña + "'";
+                String query = "SELECT * FROM usuarios WHERE nombreUsuario='" + nombre + "' AND contraseña='" + contraseña + "'";
                 rs = stm.executeQuery(query);
                 if (rs.next()) {
                     autentificar = true;

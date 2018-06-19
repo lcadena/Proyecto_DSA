@@ -90,8 +90,8 @@
     <!-- Container (About Section) -->
     <div class="w3-content w3-container w3-padding-64" id="about">
         <h3 class="w3-center">ABOUT PROJECT</h3>
-        <p class="w3-center"><em>World of EETAC</em></p>
-        <p>Hemos creado un juego interactivo basado en la búsqueda de apuntes dentro del marco de la eetac.</p>
+        <p class="w3-center"><em>TELECOMBAT</em></p>
+        <p>Hemos creado un juego interactivo que se basa en responder a una srie de preguntas para vencer a los villanos.</p>
         <div class="w3-row">
             <div class="w3-col m6 w3-center w3-padding-large">
                 <!--<p><b><i class="fa fa-user w3-margin-right"></i>My Name</b></p><br>-->
@@ -100,10 +100,10 @@
 
             <!-- Hide this text on small devices -->
             <div class="w3-col m6 w3-hide-small w3-padding-large">
-                <p>Bienvenido a World of EETAC!!! Un juego donde encontraras infinidad de apuntes al alcance de tus manos.
-                    Podras disfrutar de una búsqueda interactiva y amena. En el juego encontrarás una persona que comaprta sus apuntes,
-                    y te apoderarás de ellos.
-                    El proyecto ha sido realizado por estudiantes de la EETAC para la asignatura de Diseño de Servicios y Aplicaiones.</p>
+                <p>Bienvenido a Telecombat!!! Un juego interactivo que te ayudara a aprender conocimientos de Telecomunicaciones de una manera divertida.
+                    Para superar a los malos tienes que responder correctamente a las preguntas que estos te plantearán.
+                    El proyecto ha sido realizado por estudiantes de la EETAC para la asignatura de Diseño de Servicios y Aplicaiones.
+                    Contributors: Arnau Nisarre, Andrés Sama, Liz Cadena</p>
             </div>
         </div>
     </div>
@@ -191,6 +191,8 @@
         <script>
             $(document).ready(function () {
             var url = 'http://192.168.56.1:8080/myapp/json';
+                /*var r = confirm("Inicia Sesion")
+                var txt;*/
             $("#buttonRegister").click(function () {
                 $.ajax({
                     url: url + '/new',
@@ -202,8 +204,12 @@
                         password: $("#password").val()
                     }),
                     success: function (data, status) {
-                        alert("Data: " + data + "\n Status: " + status);
-                        console.log(data)
+                        if (data != null) {alert("Bienvenido");
+                            alert("Data: " + data + "\n Status: " + status);}
+                        //txt = "Bienvenido";
+
+                        /*alert("Data: " + data + "\n Status: " + status);
+                        console.log(data)*/
                     }
                 });
             });
@@ -245,7 +251,7 @@
 
     <!-- Container (Contact Section) -->
     <div class="w3-content w3-container w3-padding-64" id="contact">
-        <h3 class="w3-center">WHERE I WORK</h3>
+        <h3 class="w3-center">WHERE WE WORK</h3>
         <!--<p class="w3-center"><em>I'd love your feedback!</em></p>-->
 
         <div class="w3-row w3-padding-32 w3-section">

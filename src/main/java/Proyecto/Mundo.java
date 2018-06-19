@@ -7,7 +7,6 @@ import DAOs.DAO_UsuarioImpl;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 
 public class Mundo {
@@ -118,6 +117,12 @@ public class Mundo {
         return inventariodeUsuario;
     }
 
+    public Usuario posicionyEscenariodeUsuario (String nombreUsuario) throws SQLException {
+        conn.conectar();
+        Usuario u = usuario.infoUserconEscenario(nombreUsuario);
+        conn.desconectar();
+        return u;
+    }
     public boolean daoUpdateValorObjeto(String nombreObjeto, int valor) throws SQLException{
         conn.conectar();
         boolean r = objeto.updateValor(nombreObjeto,valor);
@@ -170,7 +175,7 @@ public class Mundo {
 
 
 
-    public int eliminarObjeto(Usuario e,String nombreobj){
+/*    public int eliminarObjeto(Usuario e,String nombreobj){
 
         int y =9;
         Objeto f = new Objeto();
@@ -182,8 +187,8 @@ public class Mundo {
             y =0;}
 
             return y;
-    }
-    ///funcion anadir objeto a usuario
+    }*/
+/*    ///funcion anadir objeto a usuario
     public void añadirObjeto(Usuario u, Objeto o){
         u.miInventario.add(o);
     }
@@ -200,5 +205,5 @@ public class Mundo {
         u.miInventario.remove(o);
         e.miInventario.add(o);
 
-    }
+    }*/
 }

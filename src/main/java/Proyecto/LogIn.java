@@ -2,7 +2,6 @@ package Proyecto;
 
 public class LogIn {
     String nombre;
-
     String password;
 
 

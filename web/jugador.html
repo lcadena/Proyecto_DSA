@@ -86,7 +86,7 @@
             <script>
                 $(document).ready(function () {
                     var url = 'http://192.168.56.1:8080/myapp/json';
-                    var urL = 'http://192.168.56.1:8080/';
+                    //var urL = 'http://192.168.56.1:8080/';
                     $("#buttonHistorialOb").click(function () {
                         $.ajax({
                             url: url + '/listar/'+ $("#username").val(),
@@ -98,18 +98,21 @@
                                 /*password: $("#password").val()*/
                             //}),
                             success: function (data, status) {
-                                alert("Data: " + data + "\n Status: " + status);
-                                console.log(data)
                                 var idObjeto = data.idObjeto;
                                 var idUsuario = data.idusuario;
                                 var nombreObjeto = data.nombreObjeto;
                                 var urlObjeto = data.urlObjeto;
                                 var descripcion = data.descripcion;
+                                var objetos = ["Espada0", "Casco", "Escudo"]
                                 sessionStorage.getItem("idObjeto", idObjeto)
                                 sessionStorage.getItem("idUsuario", idUsuario)
                                 sessionStorage.getItem("nombreObjeto", nombreObjeto)
                                 sessionStorage.getItem("urlObjeto", urlObjeto)
                                 sessionStorage.getItem("descripcion", descripcion)
+                                alert("Data: " + objetos.get + "\n Status: " + status);
+                                console.log(data)
+                                //alert("Heloo"+data);
+
                             }
                         });
                     });
