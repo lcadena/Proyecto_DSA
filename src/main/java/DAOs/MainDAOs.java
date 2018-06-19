@@ -16,7 +16,7 @@ public class MainDAOs {
         Mundo m = new Mundo();
         LogIn log = new LogIn("Liz", "222");
         Usuario u = new Usuario(23,"Tomas","2323",3,2,"bosque");
-        Objeto obj = new Objeto(4, 9,"Lanza","/web/images","dkdkmkefnken");
+        Objeto obj = new Objeto(9,"palo","/web/images","dkdkmkefnken");
         //usuario.registroUsuario(u);
 
         try {
@@ -28,8 +28,8 @@ public class MainDAOs {
             //m.daoConsultarUsuario("Liz");
             //m.daoInicioSesionUsuario(log);
             //m.daoValidarUsuario("Liz", "222");
-            m.daoUpdatePasswordUsuario("Liz", "pooo");
-            //m.daoAñadirObjeto(obj);
+            //m.daoUpdatePasswordUsuario("Liz", "pooo");
+            m.daoAñadirObjeto(obj);
             //m.daoElegirObjeto("Catana");
             //m.daoEliminarObjeto(obj);
             //m.daoUpdateValorObjeto("Espada", 400);

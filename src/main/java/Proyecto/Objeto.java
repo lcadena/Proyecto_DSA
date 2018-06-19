@@ -22,6 +22,12 @@ public class Objeto {
         this.urlObjeto = urlObjeto;
         this.descripcion = descripcion;
     }
+    public Objeto(int idUsuario, String nombreObjeto, String urlObjeto, String descripcion){
+        this.idUsuario = idUsuario;
+        this.nombreObjeto = nombreObjeto;
+        this.urlObjeto = urlObjeto;
+        this.descripcion = descripcion;
+    }
 
 
     public int getIdObjeto() {

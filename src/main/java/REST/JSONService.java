@@ -99,10 +99,10 @@ public class JSONService {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getUsuario(@PathParam("nombre") String nombre) throws SQLException {
         Usuario u = mundo.daoConsultarUsuario(nombre);
-        if (u !=null) {
-            return Response.status(201).entity(u).build();
-        } else {
+        if (u == null) {
             return Response.status(409).entity(u).build();
+        } else {
+            return Response.status(201).entity(u).build();
         }
 
     }
