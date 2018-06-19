@@ -193,11 +193,10 @@ public class DAO_UsuarioImpl{
     }
 
     //metodo UPDATE
-    public boolean updatePassword(String nombreUsuario, String contraseña){
+    public boolean updatePassword(String nombreUsuario, String contraseña) throws SQLException {
+        Statement stm = ConnBBDD.conn.createStatement();
         boolean updateP = false;
-        Statement stm = null;
         try {
-            stm = ConnBBDD.conn.createStatement();
             String query = "UPDATE usuarios SET contraseña='" + contraseña + "' where nombreUsuario='" + nombreUsuario + "'";
             stm.execute(query);
             updateP = true;

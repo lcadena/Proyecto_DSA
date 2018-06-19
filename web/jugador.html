@@ -97,20 +97,22 @@
                                 /*password: $("#password").val()*/
                             //}),
                             success: function (data, status) {
-                                //alert("Data: " + data + "\n Status: " + status);
+                                //data = JSON.parse(this.response);
                                 var idObjeto = data.idObjeto;
                                 var idUsuario = data.idusuario;
                                 var nombreObjeto = data.nombreObjeto;
                                 var urlObjeto = data.urlObjeto;
                                 var descripcion = data.descripcion;
-                                //var objetos = ["Espada0", "Casco", "Escudo"]
                                 sessionStorage.getItem("idObjeto", idObjeto)
                                 sessionStorage.getItem("idUsuario", idUsuario)
                                 sessionStorage.getItem("nombreObjeto", nombreObjeto)
                                 sessionStorage.getItem("urlObjeto", urlObjeto)
                                 sessionStorage.getItem("descripcion", descripcion)
                                 alert("Data: " + data + "\n Status: " + status);
+                                alert("El usuario " + $("#username").val() + "\n tiene " + data.length + "objetos" )
+                                //alert(sessionStorage.getItem("nombreObjeto", data.nombreObjeto))
                                 console.log(data)
+                                //alert(nombreObjeto, nombreObjeto, nombreObjeto)
                                 //alert("Heloo"+data);
 
                             }
@@ -128,7 +130,7 @@
                         dataType: 'json',
                         contentType: 'application/json',
                         data: JSON.stringify({
-                        username: $("#username").val(),
+                        nombreUsuario: $("#username").val(),
                         contraseña: $("#contraseña").val()
                         }),
                         success: function (data, status) {

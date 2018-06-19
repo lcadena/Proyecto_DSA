@@ -123,12 +123,6 @@ public class Mundo {
         conn.desconectar();
         return u;
     }
-    public boolean daoUpdateValorObjeto(String nombreObjeto, int valor) throws SQLException{
-        conn.conectar();
-        boolean r = objeto.updateValor(nombreObjeto,valor);
-        conn.desconectar();
-        return r;
-    }
 
     public void crearEscenario(Escenario a) {
 

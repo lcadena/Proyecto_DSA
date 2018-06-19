@@ -23,12 +23,12 @@ public class MainDAOs {
             //objeto.insertarObjInventario(u, obj);
             //m.lista();
             //m.daoRegistroUsuario(u);
-            m.posicionyEscenariodeUsuario("Tomas");
+            //m.posicionyEscenariodeUsuario("Tomas");
             //m.daoEliminarUsuario(u);
             //m.daoConsultarUsuario("Liz");
             //m.daoInicioSesionUsuario(log);
             //m.daoValidarUsuario("Liz", "222");
-            //m.daoUpdatePasswordUsuario("Liz", "355");
+            m.daoUpdatePasswordUsuario("Liz", "pooo");
             //m.daoAñadirObjeto(obj);
             //m.daoElegirObjeto("Catana");
             //m.daoEliminarObjeto(obj);
