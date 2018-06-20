@@ -144,11 +144,17 @@ public class JSONService {
     }
 
     @GET
-    @Path("/Objeto/{nombre}")
+    @Path("/consultarObjeto/{idObj}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getObjetoiD(@PathParam("idObj") int idObj) throws SQLException{
+        return Response.status(201).entity(mundo.daoConsultarObjeto(idObj)).build();
+    }
+
+    @GET
+    @Path("/consultarObjetoporNombre/{nombre}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getObjeto(@PathParam("nombre") String nombre) throws SQLException{
-      Objeto obj =  mundo.daoConsultarObjetoNom(nombre);
-        return Response.status(201).entity(obj).build();
+        return Response.status(201).entity(mundo.daoConsultarObjetoporNom(nombre)).build();
     }
 
     @GET

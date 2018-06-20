@@ -51,7 +51,7 @@ public class DAO_ObjetoImpl{
 
     /////metodo SELECT
     public Objeto consultarObjeto(int id) throws SQLException{
-        String query = "SELECT * FROM objetos WHERE nombreObjeto='" + id + "'";
+        String query = "SELECT * FROM objetos WHERE idObjeto='" + id + "'";
         Statement stm = ConnBBDD.conn.createStatement();
         ResultSet rs = stm.executeQuery(query);
         System.out.println("Aqui llego también");
@@ -61,17 +61,17 @@ public class DAO_ObjetoImpl{
             o.setIdUsuario(rs.getInt("idUsuario"));
             o.setNombreObjeto(rs.getString("nombreObjeto"));
             o.setUrlObjeto(rs.getString("urlObjeto"));
-            o.setDescripcion(rs.getString("descripción"));
-            System.out.println("Objeto " + o.getNombreObjeto() + " con descripción " + o.getDescripcion());
+            o.setDescripcion(rs.getString("descripcion"));
+            System.out.println("Objeto " + o.getNombreObjeto() + " con descripcion " + o.getDescripcion());
         }
         rs.close();
         stm.close();
         return o;
 
     }
-    public Objeto consultarObjetoNom(String nombreOb) throws SQLException{
+    public Objeto consultarObjetoporNom(String nombre) throws SQLException{
         Objeto objeto = new Objeto();
-        String query = "SELECT * FROM objetos WHERE nombreObjeto='" + nombreOb + "'";
+        String query = "SELECT * FROM objetos WHERE nombreObjeto='" + nombre + "'";
         Statement stm = ConnBBDD.conn.createStatement();
         ResultSet rs = stm.executeQuery(query);
         while (rs.next()){
@@ -79,7 +79,7 @@ public class DAO_ObjetoImpl{
             objeto.setIdUsuario(rs.getInt("idUsuario"));
             objeto.setNombreObjeto(rs.getString("nombreObjeto"));
             objeto.setUrlObjeto(rs.getString("urlObjeto"));
-            objeto.setDescripcion(rs.getString("descripción"));
+            objeto.setDescripcion(rs.getString("descripcion"));
             System.out.println("Objeto " + objeto.getNombreObjeto() + " con descripción " + objeto.getDescripcion());
         }
         rs.close();

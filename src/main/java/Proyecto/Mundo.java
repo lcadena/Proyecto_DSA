@@ -98,10 +98,10 @@ public class Mundo {
         return o;
     }
 
-    public Objeto daoConsultarObjetoNom(String nombre)throws SQLException{
+    public Objeto daoConsultarObjetoporNom(String nombre)throws SQLException{
         Objeto o;
         conn.conectar();
-        o = objeto.consultarObjetoNom(nombre);
+        o = objeto.consultarObjetoporNom(nombre);
         conn.desconectar();
         return o;
     }
