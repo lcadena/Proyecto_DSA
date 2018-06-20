@@ -142,7 +142,6 @@ public class JSONService {
         }
 
     }
-
     @GET
     @Path("/consultarObjeto/{idObj}")
     @Produces(MediaType.APPLICATION_JSON)
