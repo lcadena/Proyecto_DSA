@@ -82,8 +82,8 @@ public class Usuario {
         this.nombreEscenario = nombreEscenario;
     }
 
-    public Usuario(String nombreUsuario, String contraseña){
-        //this.idUsuario = idUsuario;
+    public Usuario(int idUsuario, String nombreUsuario, String contraseña){
+        this.idUsuario = idUsuario;
         this.nombreUsuario = nombreUsuario;
         this.contraseña = contraseña;
     }

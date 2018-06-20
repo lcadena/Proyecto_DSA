@@ -90,7 +90,7 @@
     <!-- Container (About Section) -->
     <div class="w3-content w3-container w3-padding-64" id="about">
         <h3 class="w3-center">ABOUT PROJECT</h3>
-        <p class="w3-center"><em>TELECOMBAT</em></p>
+        <p class="w3-center"><em>World of EETAC</em></p>
         <p>Hemos creado un juego interactivo que se basa en responder a una srie de preguntas para vencer a los villanos.</p>
         <div class="w3-row">
             <div class="w3-col m6 w3-center w3-padding-large">
@@ -137,7 +137,7 @@
     <!-- Container (Game Section) -->
     <div class="w3-content w3-container w3-padding-64" id="game">
         <h3 class="w3-center">WORLD OF EETAC</h3>
-        <p class="w3-center"><em>Preparado para la búsqueda de apuntes<br> Elige una opción </em></p><br>
+        <p class="w3-center"><em>Preparado para el trivial de preguntas de Telecomunicaciones<br> Elige una opción </em></p><br>
 
         <!-- Responsive Grid. Four columns on tablets, laptops and desktops. Will stack on mobile devices/small screens (100% width) -->
         <div class="w3-row-padding w3-center">
@@ -200,12 +200,12 @@
                     dataType: 'json',
                     contentType: 'application/json',
                     data: JSON.stringify({
-                        //idUsuario: 1,
-                        nombre: $("#nombreUsuario").val(),
-                        password: $("#contraseña").val()
+                        //idUsuario: 35,
+                        nombreUsuario: $("#nombreUsuario").val(),
+                        contraseña: $("#contraseña").val()
                     }),
                     success: function (data, status) {
-                        alert("Registro correcto, inicie sesion");
+                        alert("Registro correcto");
                     },
                     error: function (data, status) {
                         alert("Registro erroneo")

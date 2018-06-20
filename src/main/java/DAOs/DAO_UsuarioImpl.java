@@ -98,7 +98,7 @@ public class DAO_UsuarioImpl{
         System.out.println(query);
 
         if (rs.next()){
-            u.setIdUsuario(rs.getInt("idUsuario"));
+            //u.setIdUsuario(rs.getInt("idUsuario"));
             u.setNombreUsuario(rs.getString("nombreUsuario"));
             u.setContraseña(rs.getString("contraseña"));
             System.out.println("Usuario: " + u.getNombre() + " con contraseña: " + u.getContraseña() );
