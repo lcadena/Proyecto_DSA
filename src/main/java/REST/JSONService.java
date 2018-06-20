@@ -66,10 +66,10 @@ public class JSONService {
     public Response newObjeto (Objeto objeto) throws SQLException {
         boolean r = mundo.daoAñadirObjeto(objeto);
         if(r){
-            return Response.status(201).entity("Añadido correctamente").build();
+            return Response.status(201).entity(r).build();
         } else {
             r = false;
-            return Response.status(409).entity("Error al añadir el objeto").build();
+            return Response.status(409).entity(r).build();
         }
     }
 

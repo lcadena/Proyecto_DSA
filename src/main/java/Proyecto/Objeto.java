@@ -11,10 +11,6 @@ public class Objeto {
     public  Objeto(){
 
     }
-    public Objeto(String nombre, int valor){
-        this.nombreObjeto = nombre;
-
-    }
     public Objeto(int idObjeto, int idUsuario, String nombreObjeto, String urlObjeto, String descripcion){
         this.idObjeto = idObjeto;
         this.idUsuario = idUsuario;
